@@ -1,3 +1,8 @@
+@import 'src/styles/variables';
+
 .titleHeader {
-  background-color: cadetblue;
+  h2 {
+    color: $darkGrey;
+    font-size: 16px;
+  }
 }
