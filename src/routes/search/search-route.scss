@@ -1,0 +1,9 @@
+.searchRoute {
+  display: grid;
+  grid-template-columns: 12% 76% 12%;
+
+  .searchContainer {
+    display: grid;
+    grid-template-columns: 30% 70%;
+  }
+}

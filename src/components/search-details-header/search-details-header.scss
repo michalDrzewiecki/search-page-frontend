@@ -1,0 +1,11 @@
+.searchDetailsHeader {
+  background-color: bisque;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .detailsContainer {
+    display: flex;
+    flex-direction: row;
+  }
+}
