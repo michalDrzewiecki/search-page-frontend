@@ -1,3 +1,38 @@
+@import 'src/styles/variables';
+
 .filters {
-  background-color: cornsilk;
+  .filtersHeader {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 25px;
+
+    .filtersTitle {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      margin-bottom: 15px;
+
+      h2 {
+        color: black;
+      }
+
+      p {
+        color: $lightGrey;
+        font-size: 12px;
+        background-color: white;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .filterElementContainer {
+    margin-bottom: 15px;
+  }
 }

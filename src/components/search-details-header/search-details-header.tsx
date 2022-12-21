@@ -1,4 +1,5 @@
 import './search-details-header.scss';
+import { sortConfig } from '../../config/sort/sort-config';
 import { GridSelector } from './components/grid-selector/grid-selector';
 import { PageSelector } from './components/page-selector/page-selector';
 import { SortSelector } from './components/sort-selector/sort-selector';
@@ -9,10 +10,12 @@ export const SearchDetailsHeader = () => {
       <hr className={'line'}/>
     </div>
     <div className={'searchDetailsHeader'}>
-      <GridSelector/>
+      <div>
+        {/*<GridSelector/>*/}
+      </div>
       <div className={'detailsContainer'}>
-        <SortSelector/>
-        <PageSelector/>
+        <SortSelector sortConfig={sortConfig}/>
+        {/*<PageSelector/>*/}
       </div>
     </div>
     <div className={'lineContainer'}>

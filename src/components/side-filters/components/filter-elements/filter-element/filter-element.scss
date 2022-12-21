@@ -1,0 +1,13 @@
+@import 'src/styles/variables';
+
+.filterElement {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+
+  .filterElementName {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}

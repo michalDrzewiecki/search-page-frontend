@@ -7,6 +7,12 @@ const translation: TranslationInterface = {
   },
   [TranslationComponentNameEnum.productAmount]: {
     resultSuffix: 'wyniki'
+  },
+  [TranslationComponentNameEnum.filters]: {
+    filtersTitle: 'Filtry',
+    clearAllFiltersText: 'Wyczyść wszystkie',
+    showAllFiltersText: 'Pokaż wszystkie filtry',
+    selectAllFiltersText: 'Zaznacz wszystkie'
   }
 };
 

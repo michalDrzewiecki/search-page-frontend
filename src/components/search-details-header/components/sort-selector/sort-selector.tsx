@@ -1,10 +1,12 @@
 import './sort-selector.scss';
-import { CustomSelect } from '../../../custom-select/custom-select';
+import { DetailsHeaderSelect } from './components/details-header-select/details-header-select';
+import { SortSelectorPropsInterface } from './sort-selector-props.interface';
 
+export const SortSelector = ({sortConfig}: SortSelectorPropsInterface) => {
 
-export const SortSelector = () => {
+  const sortOptions = sortConfig.map(sortOption => sortOption.name);
 
   return <div className={'sortSelector'}>
-    <CustomSelect/>
+    <DetailsHeaderSelect options={sortOptions}/>
   </div>
 }

@@ -13,7 +13,10 @@ export const SearchRoute = () => {
       <div>
         <SearchHeader/>
         <div className={'searchContainer'}>
-          <SideFilters filtersConfig={filterConfig}/>
+          <div>
+            <SideFilters filtersConfig={filterConfig}/>
+          </div>
+          <div/>
           <div className={'resultsContainer'}>
             <ProductRecommendedList/>
             <SearchDetailsHeader/>

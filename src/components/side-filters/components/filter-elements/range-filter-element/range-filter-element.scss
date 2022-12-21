@@ -1,0 +1,32 @@
+@import 'src/styles/variables';
+
+.rangeFilterContainer {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: $filterSingleElementBottomMargin;
+
+  .singleRangeContainer {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+
+    input {
+      width: 90%;
+    }
+  }
+
+  .lineContainer {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .line {
+      width: 100%;
+      margin: 0 10px 0 10px;
+      background-color: $lightGrey;
+      border: none;
+      height: 1px;
+    }
+  }
+}
