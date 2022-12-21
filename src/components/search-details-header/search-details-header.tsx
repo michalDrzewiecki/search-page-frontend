@@ -4,11 +4,19 @@ import { PageSelector } from './components/page-selector/page-selector';
 import { SortSelector } from './components/sort-selector/sort-selector';
 
 export const SearchDetailsHeader = () => {
-  return <div className={'searchDetailsHeader'}>
-    <GridSelector/>
-    <div className={'detailsContainer'}>
-      <SortSelector/>
-      <PageSelector/>
+  return <div className={'searchDetailsContainer'}>
+    <div className={'lineContainer'}>
+      <hr className={'line'}/>
+    </div>
+    <div className={'searchDetailsHeader'}>
+      <GridSelector/>
+      <div className={'detailsContainer'}>
+        <SortSelector/>
+        <PageSelector/>
+      </div>
+    </div>
+    <div className={'lineContainer'}>
+      <hr className={'line'}/>
     </div>
   </div>
 }

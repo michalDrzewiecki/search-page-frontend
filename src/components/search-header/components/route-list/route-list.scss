@@ -1,3 +1,15 @@
+@import 'src/styles/variables';
+
 .routeList {
-  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  color: $darkGrey;
+  font-size: 15px;
+  margin-left: 20px;
+
+  .routeElementContainer {
+    display: flex;
+    flex-direction: row;
+  }
 }

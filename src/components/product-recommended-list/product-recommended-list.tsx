@@ -28,7 +28,7 @@ const mockedProducts: ProductInterface[] = [
   {
     id: '3',
     imgUrl: 'https://cdn.x-kom.pl/i/setup/images/prod/big/product-new-big,,2022/8/pr_2022_8_25_12_51_23_154_00.jpg',
-    name: 'Laptop Samsung R7-5800H/16GB/1TB/Win11 RTX3060 240Hz',
+    name: 'Samsung R7-5800H/16GB/1TB/Win11 RTX3060 240Hz',
     prize: {
       currency: CurrencyEnum.pln,
       current: 2500,

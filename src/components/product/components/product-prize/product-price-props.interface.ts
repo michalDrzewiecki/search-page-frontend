@@ -1,4 +1,4 @@
-export interface ProductPrizePropsInterface {
+export interface ProductPricePropsInterface {
   current: number;
   previous: number;
   currencySymbol: string;

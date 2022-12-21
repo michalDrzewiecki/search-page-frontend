@@ -1,7 +1,12 @@
 import './route-list.scss';
+import { RouteElement } from './components/route-element/route-element';
+import { RouteListPropsInterface } from './route-list-props.interface';
 
-export const RouteList = () => {
+export const RouteList = ({routes}: RouteListPropsInterface) => {
   return <div className={'routeList'}>
-    ROUTE LIST
+    {routes.map((route, index) => <div className={'routeElementContainer'}>
+      <RouteElement route={route}/>
+      &nbsp;{index !== routes.length - 1 ? '>' : ''}&nbsp;
+    </div>)}
   </div>
 }

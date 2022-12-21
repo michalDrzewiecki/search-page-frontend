@@ -1,7 +1,30 @@
+@import 'src/styles/variables';
+
 .productContainer {
-  height: 95%;
-  width: 20%;
-  padding: 0 10px 0 0;
   display: grid;
-  grid-template-rows: 60% 20% 20%;
+  grid-template-rows: 60% 40%;
+  margin: 10px 10px 10px 10px;
+  height: 240px;
+  width: 200px;
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid $lightGrey;
+    border-radius: 20px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .imageContainer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .textContainer {
+    margin-left: 10px;
+    display: grid;
+    width: 100px;
+    grid-template-rows: 50% 50% ;
+  }
 }

@@ -4,6 +4,7 @@ import { SearchDetailsHeader } from '../../components/search-details-header/sear
 import { SearchHeader } from '../../components/search-header/search-header';
 import { SideFilters } from '../../components/side-filters/side-filters';
 import './search-route.scss';
+import { filterConfig } from '../../config/filters/filter-config';
 
 export const SearchRoute = () => {
   return (
@@ -12,7 +13,7 @@ export const SearchRoute = () => {
       <div>
         <SearchHeader/>
         <div className={'searchContainer'}>
-          <SideFilters/>
+          <SideFilters filtersConfig={filterConfig}/>
           <div className={'resultsContainer'}>
             <ProductRecommendedList/>
             <SearchDetailsHeader/>

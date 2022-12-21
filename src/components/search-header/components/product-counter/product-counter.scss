@@ -1,3 +1,10 @@
+@import 'src/styles/variables';
+
 .productCounter {
-  background-color: cornsilk;
+  font-size: 22px;
+  color: $midGrey;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

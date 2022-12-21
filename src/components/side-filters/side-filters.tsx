@@ -4,11 +4,16 @@ import {
   SideFiltersCategorySelector
 } from './components/side-filters-category-selector/side-filters-category-selector';
 import './side-filters.scss';
+import { SideFiltersPropsInterface } from './side-filters-props.interface';
 
-export const SideFilters = () => {
+export const SideFilters = ({filtersConfig}: SideFiltersPropsInterface) => {
+  const sideFilters = filtersConfig.filter(filterElement => !filterElement.isHidden);
+
   return <div className={'sideFilters'}>
-    <SideFiltersCategorySelector/>
-    <Filters/>
-    <ExpandFilters/>
+    <div className={'sideFiltersContainer'}>
+      <SideFiltersCategorySelector/>
+      <Filters filtersConfig={sideFilters}/>
+      <ExpandFilters/>
+    </div>
   </div>
 }

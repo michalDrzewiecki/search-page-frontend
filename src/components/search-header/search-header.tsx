@@ -5,10 +5,10 @@ import { RouteTitle } from './components/route-title/route-title';
 
 export const SearchHeader = () => {
   return <div className={'searchHeader'}>
-    <RouteList/>
+    <RouteList routes={[{name: 'searchpage', link: ''}, {name: 'laptopy', link: ''}, {name: 'ultrabooki/notebooki', link: ''}]}/>
     <div className={'routeTitleContainer'}>
-      <RouteTitle/>
-      <ProductCounter/>
+      <RouteTitle category={'Laptopy/Notebooki/Ultrabooki'}/>
+      <ProductCounter productAmount={2345}/>
     </div>
   </div>
 }

@@ -1,11 +1,27 @@
-.searchDetailsHeader {
-  background-color: bisque;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+@import 'src/styles/variables';
 
-  .detailsContainer {
+.searchDetailsContainer {
+  .lineContainer {
+    display: flex;
+    justify-content: center;
+
+    .line {
+      width: 90%;
+      margin: 20px 0 20px 0;
+      background-color: $lightGrey;
+      border: none;
+      height: 1px;
+    }
+  }
+
+  .searchDetailsHeader {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+
+    .detailsContainer {
+      display: flex;
+      flex-direction: row;
+    }
   }
 }

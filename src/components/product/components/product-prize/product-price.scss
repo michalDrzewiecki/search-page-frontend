@@ -1,0 +1,13 @@
+@import 'src/styles/variables';
+
+.previousPrice {
+  color: $darkGrey;
+  font-size: 14px;
+  text-decoration: line-through;
+}
+
+.currentPrice {
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+}

@@ -1,15 +1,19 @@
 import { transformCurrencyToSymbol } from '../../utils';
 import { Image } from './components/image/image';
 import { ProductName } from './components/product-name/product-name';
-import { ProductPrize } from './components/product-prize/product-prize';
+import { ProductPrice } from './components/product-prize/product-price';
 import { ProductPropsInterface } from './product-props.interface';
 import './product.scss';
 
 export const Product = ({product: {imgUrl, name, prize: {current, previous, currency}}}: ProductPropsInterface) => {
   const currencySymbol = transformCurrencyToSymbol(currency);
   return <div className={'productContainer'}>
-    <Image imgUrl={imgUrl}/>
-    <ProductName name={name}/>
-    <ProductPrize current={current} previous={previous} currencySymbol={currencySymbol}/>
+    <div className={'imageContainer'}>
+      <Image imgUrl={imgUrl}/>
+    </div>
+    <div className={'textContainer'}>
+      <ProductName name={name}/>
+      <ProductPrice current={current} previous={previous} currencySymbol={currencySymbol}/>
+    </div>
   </div>
 }
