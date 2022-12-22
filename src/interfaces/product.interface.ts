@@ -4,5 +4,5 @@ export interface ProductInterface {
   id: string;
   imgUrl: string;
   name: string;
-  prize: PrizeInterface;
+  price: PrizeInterface;
 }

@@ -1,11 +1,11 @@
 import { transformCurrencyToSymbol } from '../../utils';
 import { Image } from './components/image/image';
 import { ProductName } from './components/product-name/product-name';
-import { ProductPrice } from './components/product-prize/product-price';
+import { ProductPrice } from './components/product-price/product-price';
 import { ProductPropsInterface } from './product-props.interface';
 import './product.scss';
 
-export const Product = ({product: {imgUrl, name, prize: {current, previous, currency}}}: ProductPropsInterface) => {
+export const Product = ({product: {imgUrl, name, price: {current, previous, currency}}}: ProductPropsInterface) => {
   const currencySymbol = transformCurrencyToSymbol(currency);
   return <div className={'productContainer'}>
     <div className={'imageContainer'}>

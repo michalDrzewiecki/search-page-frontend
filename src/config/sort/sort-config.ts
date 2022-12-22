@@ -3,7 +3,7 @@ import { SortOptionInterface } from './interfaces';
 export const sortConfig: SortOptionInterface[] = [
   {
     name: 'Od najpopularniejszych',
-    sortField: 'popularity',
+    sortField: 'soldAmount',
     sortValue: -1
   },
   {
@@ -14,11 +14,6 @@ export const sortConfig: SortOptionInterface[] = [
   {
     name: 'Cena: od najdroższych',
     sortField: 'price',
-    sortValue: -1
-  },
-  {
-    name: 'Oceny: od najlepszych',
-    sortField: 'rating',
     sortValue: -1
   }
 ];

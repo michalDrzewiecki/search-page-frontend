@@ -1,0 +1,22 @@
+@import 'src/styles/variables';
+
+.priceContainer {
+
+  .previousPrice {
+    color: $darkGrey;
+    font-size: 14px;
+    text-decoration: line-through;
+  }
+
+  .hiddenPreviousPrice {
+    @extend .previousPrice;
+    visibility: hidden;
+  }
+
+  .currentPrice {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
+

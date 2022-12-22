@@ -19,8 +19,8 @@ export const Filters = ({filtersConfig}: FiltersPropsInterface) => {
       </div>
       <ShowAllFilters/>
     </div>
-    {filtersConfig.map((filterConfig, index) => <div className={'filterElementContainer'}>
-      <FilterElement key={index} filterConfig={filterConfig}/>
+    {filtersConfig.map((filterConfig, index) => <div key={index} className={'filterElementContainer'}>
+      <FilterElement filterConfig={filterConfig}/>
     </div>)}
   </div>
 }

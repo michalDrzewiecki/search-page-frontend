@@ -5,7 +5,7 @@ export const SelectFilterElement = ({params: {options}}: SelectFilterElementProp
   return <div className={'selectElementContainer'}>
     <select>
       {
-        options.map(option => <option>{option}</option>)
+        options.map(option => <option key={option}>{option}</option>)
       }
     </select>
   </div>

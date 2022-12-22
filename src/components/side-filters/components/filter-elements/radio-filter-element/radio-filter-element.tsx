@@ -4,7 +4,7 @@ import './radio-filter-element.scss';
 export const RadioFilterElement = ({params: {options}}: RadioFilterElementPropsInterface) => {
   return <div>
     {
-      options.map(option => <div className={'radioElement'}>
+      options.map(option => <div key={option} className={'radioElement'}>
         <input type={'radio'} id={option} value={option}/>
         <label htmlFor={option}>{option}</label>
       </div>)

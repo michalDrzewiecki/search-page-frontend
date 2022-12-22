@@ -4,7 +4,7 @@ import { RouteListPropsInterface } from './route-list-props.interface';
 
 export const RouteList = ({routes}: RouteListPropsInterface) => {
   return <div className={'routeList'}>
-    {routes.map((route, index) => <div className={'routeElementContainer'}>
+    {routes.map((route, index) => <div key={route.name} className={'routeElementContainer'}>
       <RouteElement route={route}/>
       &nbsp;{index !== routes.length - 1 ? '>' : ''}&nbsp;
     </div>)}
