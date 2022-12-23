@@ -1,3 +1,6 @@
 export interface MultipleOptionsFilterElementInterface {
-  options: string[];
+  options: {
+    displayName: string;
+    value: string;
+  }[];
 }

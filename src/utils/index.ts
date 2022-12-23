@@ -1,2 +1,2 @@
-export * from './getTranslation';
-export * from './transformCurrencyToSymbol';
+export * from './get-translation';
+export * from './transform-currency-to-symbol';

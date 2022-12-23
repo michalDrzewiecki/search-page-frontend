@@ -1,7 +1,6 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 import { SortValuesEnum } from '../../../enum';
 import { changeFilters, changeSearch, changeSort, clearAllFilters, clearFilter } from '../actions/filters';
-import { changeProductAmount } from '../actions/product';
 import {
   ReduxFiltersDataInterface,
   ReduxSingleFilterDataInterface,
@@ -22,7 +21,7 @@ export const filtersReducer = createReducer(initialData, (builder) => {
     .addCase(
       changeFilters,
       (state, action: PayloadAction<ReduxSingleFilterDataInterface>) => {
-        const filters = [...state.filters];
+        const filters = JSON.parse(JSON.stringify(state.filters)) as ReduxSingleFilterDataInterface[];
         const fieldFilter = filters.find(singleFilter => singleFilter.field === action.payload.field);
         if (!fieldFilter) {
           filters.push(action.payload)
@@ -46,14 +45,14 @@ export const filtersReducer = createReducer(initialData, (builder) => {
     .addCase(
       clearFilter,
       (state, action: PayloadAction<string>) => {
-        const filters = [...state.filters];
+        const filters = JSON.parse(JSON.stringify(state.filters)) as ReduxSingleFilterDataInterface[];
         const singleFilterIndex = filters.findIndex(singleFilter => singleFilter.field === action.payload);
         if (singleFilterIndex === -1) {
           return {
             ...state
           };
         }
-        filters.slice(singleFilterIndex, 1);
+        filters.splice(singleFilterIndex, 1);
         return {
           ...state,
           filters

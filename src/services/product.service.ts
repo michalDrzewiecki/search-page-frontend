@@ -4,8 +4,8 @@ import { HttpRequestService } from './http-request.service';
 
 export class ProductService extends HttpRequestService {
 
-  public async fetchProducts(): Promise<ResourceResponseInterface<ProductInterface>> {
-    return this.get<ResourceResponseInterface<ProductInterface>>(`${config.productService.url}/products`);
+  public async fetchProducts(queryParams: string): Promise<ResourceResponseInterface<ProductInterface>> {
+    return this.get<ResourceResponseInterface<ProductInterface>>(`${config.productService.url}/products?${queryParams}`);
   }
 
   public async fetchRecommendedProducts(): Promise<ProductInterface[]> {

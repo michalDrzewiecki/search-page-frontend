@@ -6,7 +6,7 @@ export const filterConfig: FilterElementType[] = [
   {
     type: FilterElementTypeEnum.range,
     title: 'Cena',
-    filterElementName: 'price',
+    filterElementName: 'price.current',
     firstUnit: 'zł',
     secondUnit: 'zł',
     firstText: 'od',
@@ -19,13 +19,34 @@ export const filterConfig: FilterElementType[] = [
     title: 'Producent',
     filterElementName: 'producer',
     options: [
-      'HP',
-      'Dell',
-      'Acer',
-      'ASUS',
-      'Lenovo',
-      'Apple',
-      'MSI'
+      {
+        displayName: 'HP',
+        value: 'HP'
+      },
+      {
+        displayName: 'Dell',
+        value: 'Dell'
+      },
+      {
+        displayName: 'Acer',
+        value: 'Acer'
+      },
+      {
+        displayName: 'ASUS',
+        value: 'ASUS'
+      },
+      {
+        displayName: 'Lenovo',
+        value: 'Lenovo'
+      },
+      {
+        displayName: 'Apple',
+        value: 'Apple'
+      },
+      {
+        displayName: 'MSI',
+        value: 'MSI'
+      }
     ],
     selectAllOption: true,
     isHidden: false
@@ -35,10 +56,22 @@ export const filterConfig: FilterElementType[] = [
     title: 'Gwarancja',
     filterElementName: 'guarantee',
     options: [
-      '6 miesięcy',
-      '12 miesięcy',
-      '24 miesiące',
-      '36 miesięcy'
+      {
+        displayName: '6 miesięcy',
+        value: 'months6'
+      },
+      {
+        displayName: '12 miesięcy',
+        value: 'months12'
+      },
+      {
+        displayName: '24 miesięcy',
+        value: 'months24'
+      },
+      {
+        displayName: '36 miesięcy',
+        value: 'months36'
+      }
     ],
     defaultOptionIndex: 2,
     details: 'Okres trwania gwaracnji zapewniony przez producenta',
@@ -49,8 +82,14 @@ export const filterConfig: FilterElementType[] = [
     title: 'Stan',
     filterElementName: 'state',
     options: [
-      'nowy',
-      'używany'
+      {
+        displayName: 'nowy',
+        value: 'new'
+      },
+      {
+        displayName: 'używany',
+        value: 'used'
+      }
     ],
     isHidden: false
   },
@@ -59,10 +98,22 @@ export const filterConfig: FilterElementType[] = [
     title: 'Status',
     filterElementName: 'status',
     options: [
-      'Promocja',
-      'Nowe',
-      'Polecane',
-      'Ostatnie'
+      {
+        displayName: 'Promocja',
+        value: 'specialOffer'
+      },
+      {
+        displayName: 'Nowe',
+        value: 'new'
+      },
+      {
+        displayName: 'Polecane',
+        value: 'recommended'
+      },
+      {
+        displayName: 'Ostatnie',
+        value: 'last'
+      }
     ],
     selectAllOption: true,
     isHidden: false
@@ -70,7 +121,7 @@ export const filterConfig: FilterElementType[] = [
   {
     type: FilterElementTypeEnum.range,
     title: 'Pamięć RAM',
-    filterElementName: 'RAMAmount',
+    filterElementName: 'ramAmount',
     firstUnit: 'GB',
     secondUnit: 'GB',
     firstText: '4',
@@ -81,12 +132,24 @@ export const filterConfig: FilterElementType[] = [
   {
     type: FilterElementTypeEnum.select,
     title: 'Dostępność',
-    filterElementName: 'locationAvailability',
+    filterElementName: 'locations',
     options: [
-      'Gdańsk',
-      'Kraków',
-      'Łódź',
-      'Wrocław'
+      {
+        displayName: 'Gdańsk',
+        value: 'Gdańsk'
+      },
+      {
+        displayName: 'Kraków',
+        value: 'Kraków'
+      },
+      {
+        displayName: 'Łódź',
+        value: 'Łódź'
+      },
+      {
+        displayName: 'Wrocław',
+        value: 'Wrocław'
+      }
     ],
     introText: 'Wybierz lokację',
     isHidden: false
@@ -96,10 +159,22 @@ export const filterConfig: FilterElementType[] = [
     title: 'Procesor',
     filterElementName: 'processor',
     options: [
-      'Intel Core i3',
-      'Intel Core i5',
-      'Intel Core i7',
-      'Intel Pentium'
+      {
+        displayName: 'Intel Core i3',
+        value: 'Intel Core i3'
+      },
+      {
+        displayName: 'Intel Core i5',
+        value: 'Intel Core i5'
+      },
+      {
+        displayName: 'Intel Core i7',
+        value: 'Intel Core i7'
+      },
+      {
+        displayName: 'Intel Pentium',
+        value: 'Intel Pentium'
+      },
     ],
     isHidden: true
   },

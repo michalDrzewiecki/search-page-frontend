@@ -17,7 +17,6 @@ export const SortSelector = ({sortConfig}: SortSelectorPropsInterface) => {
       field: sortField,
       value: sortValue
     }));
-
   }
 
   const sortOptions = sortConfig.map(sortOption => sortOption.name);
