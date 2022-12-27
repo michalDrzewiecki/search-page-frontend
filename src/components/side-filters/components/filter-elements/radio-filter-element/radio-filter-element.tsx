@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FilterOperatorEnum } from '../../../../../enum';
 import { changeFilters, clearFilter } from '../../../../../store/redux/actions/filters';
+import { useSelector } from '../../../../../store/redux/useSelector';
 import { RadioFilterElementPropsInterface } from './radio-filter-element-props.interface';
 import './radio-filter-element.scss';
 
 export const RadioFilterElement = ({params: {options, filterElementName}}: RadioFilterElementPropsInterface) => {
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
+  const externalFilterChange = useRef<boolean>(false);
   const dispatch = useDispatch();
+  const filtersData = useSelector(state => state.filtersData.filters);
 
   useEffect(() => {
-    if (selectedValue === null) {
+    if (selectedValue === null || externalFilterChange.current) {
       return;
     }
     selectedValue ?
@@ -23,11 +26,34 @@ export const RadioFilterElement = ({params: {options, filterElementName}}: Radio
   }, [selectedValue]);
 
   const handleRadioClick = (event: any): void => {
+    externalFilterChange.current = false;
     const isChecked = event.target.checked;
     const value = event.target.value;
     const newValue = isChecked && selectedValue !== value ? value : '';
     setSelectedValue(newValue);
   };
+
+  useEffect(() => {
+    const foundFilterData = filtersData.find(singleFilterData => singleFilterData.field === filterElementName);
+    if (!foundFilterData) {
+      if (selectedValue === null) {
+        return;
+      }
+      if (selectedValue.length) {
+        externalFilterChange.current = true;
+        setSelectedValue('');
+      }
+    } else {
+      externalFilterChange.current = true;
+      if (!selectedValue) {
+        setSelectedValue(foundFilterData.values[0]);
+      }
+      const areValuesDifferent = foundFilterData.values[0] !== selectedValue;
+      if (areValuesDifferent) {
+        setSelectedValue(foundFilterData.values[0]);
+      }
+    }
+  }, [filtersData]);
 
   return <div>
     {

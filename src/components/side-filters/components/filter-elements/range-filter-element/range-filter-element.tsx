@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FilterOperatorEnum } from '../../../../../enum';
 import { changeFilters, clearFilter } from '../../../../../store/redux/actions/filters';
+import { useSelector } from '../../../../../store/redux/useSelector';
 import { RangeFilterElementPropsInterface } from './range-filter-element-props.interface';
 import './range-filter-element.scss';
 
@@ -20,6 +21,8 @@ export const RangeFilterElement = ({
   const [upperValue, setUpperValue] = useState<string | null>(null);
   const [upperValueTimer, setUpperValueTimer] = useState<NodeJS.Timeout | null>(null);
   const dispatch = useDispatch();
+  const externalFilterChange = useRef<boolean>(false);
+  const filtersData = useSelector(state => state.filtersData.filters);
 
   const updateFiltersData = (lowerValue: string | null, upperValue: string | null): void => {
     if (lowerValue && upperValue) {
@@ -82,6 +85,30 @@ export const RangeFilterElement = ({
       setUpperValue('');
     }
   }
+
+  useEffect(() => {
+    const foundFilterData = filtersData.find(singleFilterData => singleFilterData.field === filterElementName);
+    if (!foundFilterData) {
+      setUpperValue(null);
+      setLowerValue(null);
+    } else {
+      const {operator, values} = foundFilterData;
+      switch (operator) {
+        case FilterOperatorEnum.gt:
+          setLowerValue(values[0]);
+          break;
+        case FilterOperatorEnum.lt:
+          setUpperValue(values[0]);
+          break;
+        case FilterOperatorEnum.between:
+          setLowerValue(values[0]);
+          setUpperValue(values[1]);
+          break;
+        default:
+          break;
+      }
+    }
+  }, [filtersData]);
 
   return <div className={'rangeFilterContainer'}>
     <div className={'singleRangeContainer'}>

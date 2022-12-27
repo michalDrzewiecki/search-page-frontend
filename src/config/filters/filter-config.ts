@@ -57,6 +57,10 @@ export const filterConfig: FilterElementType[] = [
     filterElementName: 'guarantee',
     options: [
       {
+        displayName: 'Wybierz długość gwarancji',
+        value: ''
+      },
+      {
         displayName: '6 miesięcy',
         value: 'months6'
       },
@@ -134,6 +138,10 @@ export const filterConfig: FilterElementType[] = [
     title: 'Dostępność',
     filterElementName: 'locations',
     options: [
+      {
+        displayName: 'Wybierz salon',
+        value: ''
+      },
       {
         displayName: 'Gdańsk',
         value: 'Gdańsk'

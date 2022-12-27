@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FilterOperatorEnum } from '../../../../../enum';
 import { changeFilters, clearFilter } from '../../../../../store/redux/actions/filters';
@@ -8,12 +8,12 @@ import './checkbox-filter-element.scss';
 
 export const CheckboxFilterElement = ({params: {options, filterElementName}}: CheckboxFilterElementPropsInterface) => {
   const [selectedValues, setSelectedValues] = useState<string[] | null>(null);
-  const [externalFilterChange, setExternalFilterChange] = useState<boolean>(false);
+  const externalFilterChange = useRef<boolean>(false);
   const dispatch = useDispatch();
   const filtersData = useSelector(state => state.filtersData.filters);
 
   useEffect(() => {
-    if (!selectedValues || externalFilterChange) {
+    if (!selectedValues || externalFilterChange.current) {
       return;
     }
     selectedValues.length ?
@@ -26,7 +26,7 @@ export const CheckboxFilterElement = ({params: {options, filterElementName}}: Ch
   }, [selectedValues]);
 
   const handleCheckBoxValueChanged = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setExternalFilterChange(false);
+    externalFilterChange.current = false;
     const isChecked = event.target.checked;
     const value = event.target.value;
     if (isChecked) {
@@ -43,11 +43,11 @@ export const CheckboxFilterElement = ({params: {options, filterElementName}}: Ch
         return;
       }
       if (selectedValues.length) {
-        setExternalFilterChange(true);
+        externalFilterChange.current = true;
         setSelectedValues([]);
       }
     } else {
-      setExternalFilterChange(true);
+      externalFilterChange.current = true;
       if (!selectedValues) {
         setSelectedValues(foundFilterData.values);
       }
