@@ -3,6 +3,8 @@ import {
   ReduxSingleFilterDataInterface,
   ReduxSortDataInterface
 } from '../store/redux/interfaces/redux-filters-data.interface';
+import { FilteringKeyWordsEnum, FilteringSeparatorsEnum } from '../enum';
+
 
 export const transformFilterDataToQueryParams = (filtersData: ReduxFiltersDataInterface): string => {
   const {filters, sort, search, pagination} = filtersData;
@@ -14,25 +16,25 @@ const parseSortData = (sortData: ReduxSortDataInterface): string => {
     return '';
   }
   const {field, value} = sortData;
-  return `sort=${field}:${value}&`;
+  return `${FilteringKeyWordsEnum.sort}=${field}${FilteringSeparatorsEnum.sortSeparator}${value}&`;
 };
 
 const parseSearchData = (search: string): string => {
-  return search ? `search=${search}&` : '';
+  return search ? `${FilteringKeyWordsEnum.search}=${search}&` : '';
 };
 
 const parseFilterData = (filtersData: ReduxSingleFilterDataInterface[]): string => {
   if (!filtersData.length) {
     return '';
   }
-  let filtersQuery: string = 'filter=';
+  let filtersQuery: string = `${FilteringKeyWordsEnum.filter}=`;
   filtersData.forEach(singleFilter => {
     const {field, values, operator} = singleFilter;
-    filtersQuery += `${field}$${operator}$${values.join(',')}:`;
+    filtersQuery += `${field}${FilteringSeparatorsEnum.operatorSeparator}${operator}${FilteringSeparatorsEnum.operatorSeparator}${values.join(FilteringSeparatorsEnum.valueSeparator)}${FilteringSeparatorsEnum.filterSeparator}`;
   });
   return filtersQuery.replace(/.$/,"&");
 };
 
 const parsePaginationData = ({limit, offset}: ReduxPaginationDataInterface): string => {
-  return `limit=${limit}&offset=${offset}&`
+  return `${FilteringKeyWordsEnum.limit}=${limit}&${FilteringKeyWordsEnum.offset}=${offset}&`
 };

@@ -5,7 +5,7 @@ import { ProductService } from '../../services/product.service';
 import { changeProductAmount } from '../../store/redux/actions/product';
 import { ReduxFiltersDataInterface } from '../../store/redux/interfaces/redux-filters-data.interface';
 import { useSelector } from '../../store/redux/useSelector';
-import { transformFilterDataToQueryParams } from '../../utils/transform-filter-data-to-query-params';
+import { transformFilterDataToQueryParams } from '../../utils';
 import { Product } from '../product/product';
 import './product-list.scss';
 
@@ -17,7 +17,6 @@ export const ProductList = () => {
 
   useEffect(() => {
     const queryParams = transformFilterDataToQueryParams(filterData);
-
     const fetchProducts = async () => {
       const response = await new ProductService().fetchProducts(queryParams);
       setProducts(response.data);

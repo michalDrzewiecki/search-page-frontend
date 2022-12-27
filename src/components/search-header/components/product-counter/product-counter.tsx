@@ -7,9 +7,9 @@ import './product-counter.scss';
 
 export const ProductCounter = ({productAmount}: ProductCounterPropsInterface) => {
   const language: LanguageEnum = useSelector(state => state.languageConfig.language);
-  const translations = getTranslation(language, TranslationComponentNameEnum.productAmount) as ProductAmountTranslationData;
+  const {singleResultSuffix, resultSuffix} = getTranslation(language, TranslationComponentNameEnum.productAmount) as ProductAmountTranslationData;
 
   return <div className={'productCounter'}>
-    {`(${productAmount} ${translations.resultSuffix})`}
+    {`(${productAmount} ${productAmount === 1 ? singleResultSuffix : resultSuffix})`}
   </div>
 }

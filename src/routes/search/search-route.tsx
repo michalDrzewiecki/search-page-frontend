@@ -6,27 +6,30 @@ import { SearchHeader } from '../../components/search-header/search-header';
 import { SideFilters } from '../../components/side-filters/side-filters';
 import './search-route.scss';
 import { filterConfig } from '../../config/filters/filter-config';
+import { SearchUrlParamsContainer } from '../../containers/search-url-params-container/search-url-params.container';
 
 export const SearchRoute = () => {
   return (
-    <div className={'searchRoute'}>
-      <div/>
-      <div>
-        <SearchHeader/>
-        <div className={'searchContainer'}>
-          <div>
-            <SideFilters filtersConfig={filterConfig}/>
-          </div>
-          <div/>
-          <div className={'resultsContainer'}>
-            <ProductRecommendedList/>
-            <SearchDetailsHeader/>
-            <ProductList/>
-            <SearchDetailsFooter/>
+    <SearchUrlParamsContainer>
+      <div className={'searchRoute'}>
+        <div/>
+        <div>
+          <SearchHeader/>
+          <div className={'searchContainer'}>
+            <div>
+              <SideFilters filtersConfig={filterConfig}/>
+            </div>
+            <div/>
+            <div className={'resultsContainer'}>
+              <ProductRecommendedList/>
+              <SearchDetailsHeader/>
+              <ProductList/>
+              <SearchDetailsFooter/>
+            </div>
           </div>
         </div>
+        <div/>
       </div>
-      <div/>
-    </div>
-  )
-}
+    </SearchUrlParamsContainer>
+  );
+};

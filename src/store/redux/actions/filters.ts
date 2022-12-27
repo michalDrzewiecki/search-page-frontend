@@ -1,6 +1,14 @@
 import { createAction } from '@reduxjs/toolkit';
 import { ReduxStoreActionNameEnum } from '../../../enum';
-import { ReduxSingleFilterDataInterface, ReduxSortDataInterface } from '../interfaces/redux-filters-data.interface';
+import {
+  ReduxFiltersDataInterface,
+  ReduxSingleFilterDataInterface,
+  ReduxSortDataInterface
+} from '../interfaces/redux-filters-data.interface';
+
+export const changeAllFiltersData = createAction<ReduxFiltersDataInterface>(
+  ReduxStoreActionNameEnum.allFiltersDataChange
+)
 
 export const changeFilters = createAction<ReduxSingleFilterDataInterface>(
   ReduxStoreActionNameEnum.filtersChange,
@@ -20,6 +28,10 @@ export const changeSearch = createAction<string>(
 
 export const changeSort = createAction<ReduxSortDataInterface>(
   ReduxStoreActionNameEnum.sortChange
+);
+
+export const clearSort = createAction(
+  ReduxStoreActionNameEnum.sortClear
 );
 
 export const changeOffset = createAction<number>(

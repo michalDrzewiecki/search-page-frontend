@@ -1,6 +1,6 @@
 import './sort-selector.scss';
 import { useDispatch } from 'react-redux';
-import { changeSort } from '../../../../store/redux/actions/filters';
+import { changeSort, clearSort } from '../../../../store/redux/actions/filters';
 import { DetailsHeaderSelect } from './components/details-header-select/details-header-select';
 import { SortSelectorPropsInterface } from './sort-selector-props.interface';
 
@@ -13,15 +13,15 @@ export const SortSelector = ({sortConfig}: SortSelectorPropsInterface) => {
       return;
     }
     const {sortField, sortValue} = sortOption;
-    dispatch(changeSort({
-      field: sortField,
-      value: sortValue
-    }));
+    value ?
+      dispatch(changeSort({
+        field: sortField,
+        value: sortValue
+      })) :
+      dispatch(clearSort());
   }
 
-  const sortOptions = sortConfig.map(sortOption => sortOption.name);
-
   return <div className={'sortSelector'}>
-    <DetailsHeaderSelect options={sortOptions} onValueChange={onValueChange}/>
+    <DetailsHeaderSelect options={sortConfig} onValueChange={onValueChange}/>
   </div>
 }

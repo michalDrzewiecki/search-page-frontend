@@ -56,7 +56,6 @@ export const CheckboxFilterElement = ({params: {options, filterElementName}}: Ch
         setSelectedValues(foundFilterData.values);
       }
     }
-
   }, [filtersData]);
 
   return <div>

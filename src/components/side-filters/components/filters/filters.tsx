@@ -13,10 +13,14 @@ export const Filters = ({filtersConfig}: FiltersPropsInterface) => {
   const language: LanguageEnum = useSelector(state => state.languageConfig.language);
   const translations = getTranslation(language, TranslationComponentNameEnum.filters) as FiltersTranslationData;
 
+  const filters = useSelector(state => state.filtersData.filters);
+
   const dispatch = useDispatch();
 
   const onClearFiltersClick = (): void => {
-    dispatch(clearAllFilters());
+    if (filters.length) {
+      dispatch(clearAllFilters());
+    }
   }
 
   return <div className={'filters'}>

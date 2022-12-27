@@ -6,7 +6,8 @@ const translation: TranslationInterface = {
     titleHeader: 'Polecane w kategorii'
   },
   [TranslationComponentNameEnum.productAmount]: {
-    resultSuffix: 'wyniki'
+    resultSuffix: 'wyników',
+    singleResultSuffix: 'wynik'
   },
   [TranslationComponentNameEnum.filters]: {
     filtersTitle: 'Filtry',

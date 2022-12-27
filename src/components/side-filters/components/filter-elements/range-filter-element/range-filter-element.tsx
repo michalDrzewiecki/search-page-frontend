@@ -14,7 +14,8 @@ export const RangeFilterElement = ({
      firstUnit,
      secondText,
      secondUnit,
-     filterElementName
+     filterElementName,
+     validation
  }}: RangeFilterElementPropsInterface) => {
   const [lowerValue, setLowerValue] = useState<string | null>(null);
   const [lowerValueTimer, setLowerValueTimer] = useState<NodeJS.Timeout | null>(null);
@@ -50,9 +51,15 @@ export const RangeFilterElement = ({
 
   const onLowerValueChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
+    if (value && !validation(value)) {
+      return;
+    }
     setLowerValue(value);
     if (lowerValueTimer) {
       clearTimeout(lowerValueTimer);
+    }
+    if (upperValue && +upperValue < +value) {
+      return;
     }
     const newLowerValueTimer = setTimeout(() => {
       updateFiltersData(value, upperValue);
@@ -69,7 +76,13 @@ export const RangeFilterElement = ({
 
   const onUpperValueChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
+    if (value && !validation(value)) {
+      return;
+    }
     setUpperValue(value);
+    if (lowerValue && +lowerValue > +value) {
+      return;
+    }
     if (upperValueTimer) {
       clearTimeout(upperValueTimer);
     }

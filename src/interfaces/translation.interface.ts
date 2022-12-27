@@ -6,6 +6,7 @@ export interface ProductRecommendedListTranslationData {
 
 export interface ProductAmountTranslationData {
   resultSuffix: string;
+  singleResultSuffix: string;
 }
 
 export interface FiltersTranslationData {

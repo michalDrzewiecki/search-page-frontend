@@ -6,14 +6,14 @@ import useKeyPressedHook from '../../hooks/use-key-pressed.hook';
 import { SearchDetailsHeaderData } from '../../interfaces';
 import { changeOffset } from '../../store/redux/actions/filters';
 import { useSelector } from '../../store/redux/useSelector';
-import { getTranslation } from '../../utils';
+import { calculateOffsetBasedOnPage, calculatePageBasedOnOffset, getTranslation } from '../../utils';
 import './page-selector.scss';
 
 export const PageSelector = () => {
   const language: LanguageEnum = useSelector(state => state.languageConfig.language);
   const translations = getTranslation(language, TranslationComponentNameEnum.searchDetailsHeader) as SearchDetailsHeaderData;
   const productAmount = useSelector(state => state.productData.productAmount);
-  const paginationData = useSelector(state => state.filtersData.pagination);
+  const filtersData = useSelector(state => state.filtersData);
 
   const [pageAmount, setPageAmount] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<string>('1');
@@ -27,8 +27,7 @@ export const PageSelector = () => {
 
   const changeCurrentPageInFilters = (page?: number): void => {
     const currentPageValue = +currentPage;
-    console.log(currentPageValue);
-    dispatch(changeOffset(((page || currentPageValue) - 1) * DEFAULT_PRODUCT_AMOUNT));
+    dispatch(changeOffset(calculateOffsetBasedOnPage(page || currentPageValue)));
   }
 
   const handleCurrentPageInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -38,7 +37,6 @@ export const PageSelector = () => {
 
   useEffect(() => {
     setPageAmount(calculatePagesAmount());
-    setCurrentPage('1');
   }, [productAmount]);
 
   useEffect(() => {
@@ -52,13 +50,12 @@ export const PageSelector = () => {
   }, [enterPressed])
 
   useEffect(() => {
-    const {offset} = paginationData;
-    console.log(offset);
-    const newCurrentPageValue = (offset / DEFAULT_PRODUCT_AMOUNT + 1).toString();
+    const {offset} = filtersData.pagination;
+    const newCurrentPageValue = calculatePageBasedOnOffset(offset).toString();
     if (newCurrentPageValue !== currentPage) {
       setCurrentPage(newCurrentPageValue);
     }
-  }, [paginationData.offset])
+  }, [filtersData.pagination.offset])
 
   const changeCurrentPageValue = (value: number): void => {
     const currentPageValue = +currentPage;
@@ -70,7 +67,7 @@ export const PageSelector = () => {
   return <div className={'pageSelector'}>
     <button onClick={() => changeCurrentPageValue(-1)}>{'<'}</button>
     <input
-      type={'text'}
+      type={'number'}
       value={currentPage}
       onChange={handleCurrentPageInputChange}
       onBlur={() => changeCurrentPageInFilters()}

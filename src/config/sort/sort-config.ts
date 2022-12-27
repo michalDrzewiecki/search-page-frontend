@@ -3,6 +3,11 @@ import { SortOptionInterface } from './interfaces';
 
 export const sortConfig: SortOptionInterface[] = [
   {
+    name: 'Wybierz sposób sortowania',
+    sortField: '',
+    sortValue: SortValuesEnum.descending
+  },
+  {
     name: 'Od najpopularniejszych',
     sortField: 'soldAmount',
     sortValue: SortValuesEnum.descending

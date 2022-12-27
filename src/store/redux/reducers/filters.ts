@@ -2,12 +2,13 @@ import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 import { DEFAULT_PRODUCT_AMOUNT } from '../../../constants';
 import { SortValuesEnum } from '../../../enum';
 import {
+  changeAllFiltersData,
   changeFilters,
   changeOffset,
   changeSearch,
   changeSort,
   clearAllFilters,
-  clearFilter
+  clearFilter, clearSort
 } from '../actions/filters';
 import {
   ReduxFiltersDataInterface, ReduxPaginationDataInterface,
@@ -20,12 +21,14 @@ const defaultPaginationData: ReduxPaginationDataInterface = {
   offset: 0
 };
 
+const defaultSortData: ReduxSortDataInterface = {
+  field: '',
+  value: SortValuesEnum.ascending
+}
+
 const initialData: ReduxFiltersDataInterface = {
   filters: [],
-  sort: {
-    field: '',
-    value: SortValuesEnum.ascending
-  },
+  sort: defaultSortData,
   search: '',
   pagination: defaultPaginationData
 };
@@ -99,5 +102,17 @@ export const filtersReducer = createReducer(initialData, (builder) => {
           offset: action.payload
         }
       })
-    );
+    ).addCase(
+      changeAllFiltersData,
+      (state, action: PayloadAction<ReduxFiltersDataInterface>) => ({
+        ...state,
+        ...action.payload
+      })
+    ).addCase(
+    clearSort,
+    (state) => ({
+      ...state,
+      sort: defaultSortData
+    })
+  );
 });
