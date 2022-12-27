@@ -1,5 +1,6 @@
 import { ProductList } from '../../components/product-list/product-list';
 import { ProductRecommendedList } from '../../components/product-recommended-list/product-recommended-list';
+import { SearchDetailsFooter } from '../../components/search-details-footer/search-details-footer';
 import { SearchDetailsHeader } from '../../components/search-details-header/search-details-header';
 import { SearchHeader } from '../../components/search-header/search-header';
 import { SideFilters } from '../../components/side-filters/side-filters';
@@ -21,6 +22,7 @@ export const SearchRoute = () => {
             <ProductRecommendedList/>
             <SearchDetailsHeader/>
             <ProductList/>
+            <SearchDetailsFooter/>
           </div>
         </div>
       </div>

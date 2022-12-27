@@ -1,17 +1,9 @@
 @import 'src/styles/variables';
+@import 'src/styles/classes';
 
 .searchDetailsContainer {
   .lineContainer {
-    display: flex;
-    justify-content: center;
-
-    .line {
-      width: 90%;
-      margin: 20px 0 20px 0;
-      background-color: $lightGrey;
-      border: none;
-      height: 1px;
-    }
+    @extend .searchDetailsLineContainer;
   }
 
   .searchDetailsHeader {

@@ -1,0 +1,15 @@
+@import 'src/styles/variables';
+@import 'src/styles/classes';
+
+.searchDetailsFooterContainer {
+  .lineContainer {
+    @extend .searchDetailsLineContainer;
+  }
+
+  .searchDetailsFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 90%;
+  }
+}
