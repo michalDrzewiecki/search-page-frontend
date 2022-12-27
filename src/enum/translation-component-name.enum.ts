@@ -1,5 +1,6 @@
 export enum TranslationComponentNameEnum {
   productRecommendedList = 'productRecommendedList',
   productAmount = 'productAmount',
-  filters = 'filters'
+  filters = 'filters',
+  searchDetailsHeader = 'searchDetailsHeader'
 }

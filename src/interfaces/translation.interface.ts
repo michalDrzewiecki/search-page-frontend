@@ -15,8 +15,13 @@ export interface FiltersTranslationData {
   selectAllFiltersText: string;
 }
 
+export interface SearchDetailsHeaderData {
+  of: string;
+}
+
 export interface TranslationInterface {
   [TranslationComponentNameEnum.productRecommendedList]: ProductRecommendedListTranslationData;
   [TranslationComponentNameEnum.productAmount]: ProductAmountTranslationData;
   [TranslationComponentNameEnum.filters]: FiltersTranslationData;
+  [TranslationComponentNameEnum.searchDetailsHeader]: SearchDetailsHeaderData;
 }

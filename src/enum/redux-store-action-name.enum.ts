@@ -5,5 +5,6 @@ export enum ReduxStoreActionNameEnum {
   filtersClearAll = 'filtersClearAll',
   filterClear = 'filterClear',
   searchChange = 'searchChange',
-  sortChange = 'sortChange'
+  sortChange = 'sortChange',
+  offsetChange = 'offsetChange'
 }

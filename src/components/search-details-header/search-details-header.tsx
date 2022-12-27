@@ -15,7 +15,7 @@ export const SearchDetailsHeader = () => {
       </div>
       <div className={'detailsContainer'}>
         <SortSelector sortConfig={sortConfig}/>
-        {/*<PageSelector/>*/}
+        <PageSelector/>
       </div>
     </div>
     <div className={'lineContainer'}>

@@ -11,8 +11,14 @@ export interface ReduxSingleFilterDataInterface {
   values: string[];
 }
 
+export interface ReduxPaginationDataInterface {
+  limit: number;
+  offset: number;
+}
+
 export interface ReduxFiltersDataInterface {
   filters: ReduxSingleFilterDataInterface[];
   sort: ReduxSortDataInterface;
   search: string;
+  pagination: ReduxPaginationDataInterface;
 }

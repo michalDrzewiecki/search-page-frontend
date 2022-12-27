@@ -1,12 +1,12 @@
 import {
-  ReduxFiltersDataInterface,
+  ReduxFiltersDataInterface, ReduxPaginationDataInterface,
   ReduxSingleFilterDataInterface,
   ReduxSortDataInterface
 } from '../store/redux/interfaces/redux-filters-data.interface';
 
 export const transformFilterDataToQueryParams = (filtersData: ReduxFiltersDataInterface): string => {
-  const {filters, sort, search} = filtersData;
-  return `${parseSortData(sort)}${parseSearchData(search)}${parseFilterData(filters)}`;
+  const {filters, sort, search, pagination} = filtersData;
+  return `${parseSortData(sort)}${parseSearchData(search)}${parseFilterData(filters)}${parsePaginationData(pagination)}`;
 };
 
 const parseSortData = (sortData: ReduxSortDataInterface): string => {
@@ -31,4 +31,8 @@ const parseFilterData = (filtersData: ReduxSingleFilterDataInterface[]): string 
     filtersQuery += `${field}$${operator}$${values.join(',')}:`;
   });
   return filtersQuery.replace(/.$/,"&");
+};
+
+const parsePaginationData = ({limit, offset}: ReduxPaginationDataInterface): string => {
+  return `limit=${limit}&offset=${offset}&`
 };

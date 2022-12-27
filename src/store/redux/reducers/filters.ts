@@ -1,11 +1,24 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
+import { DEFAULT_PRODUCT_AMOUNT } from '../../../constants';
 import { SortValuesEnum } from '../../../enum';
-import { changeFilters, changeSearch, changeSort, clearAllFilters, clearFilter } from '../actions/filters';
 import {
-  ReduxFiltersDataInterface,
+  changeFilters,
+  changeOffset,
+  changeSearch,
+  changeSort,
+  clearAllFilters,
+  clearFilter
+} from '../actions/filters';
+import {
+  ReduxFiltersDataInterface, ReduxPaginationDataInterface,
   ReduxSingleFilterDataInterface,
   ReduxSortDataInterface
 } from '../interfaces/redux-filters-data.interface';
+
+const defaultPaginationData: ReduxPaginationDataInterface = {
+  limit: DEFAULT_PRODUCT_AMOUNT,
+  offset: 0
+};
 
 const initialData: ReduxFiltersDataInterface = {
   filters: [],
@@ -13,7 +26,8 @@ const initialData: ReduxFiltersDataInterface = {
     field: '',
     value: SortValuesEnum.ascending
   },
-  search: ''
+  search: '',
+  pagination: defaultPaginationData
 };
 
 export const filtersReducer = createReducer(initialData, (builder) => {
@@ -31,7 +45,8 @@ export const filtersReducer = createReducer(initialData, (builder) => {
         }
         return {
           ...state,
-          filters
+          filters,
+          pagination: defaultPaginationData
         }
       }
     )
@@ -39,7 +54,8 @@ export const filtersReducer = createReducer(initialData, (builder) => {
       clearAllFilters,
       (state) => ({
         ...state,
-        filters: []
+        filters: [],
+        pagination: defaultPaginationData
       })
     )
     .addCase(
@@ -55,7 +71,8 @@ export const filtersReducer = createReducer(initialData, (builder) => {
         filters.splice(singleFilterIndex, 1);
         return {
           ...state,
-          filters
+          filters,
+          pagination: defaultPaginationData
         }
       }
     )
@@ -63,7 +80,8 @@ export const filtersReducer = createReducer(initialData, (builder) => {
       changeSearch,
       (state, action: PayloadAction<string>) => ({
         ...state,
-        search: action.payload
+        search: action.payload,
+        pagination: defaultPaginationData
       })
     )
     .addCase(
@@ -71,6 +89,15 @@ export const filtersReducer = createReducer(initialData, (builder) => {
       (state, action: PayloadAction<ReduxSortDataInterface>) => ({
         ...state,
         sort: action.payload
+      })
+    ).addCase(
+      changeOffset,
+    (state, action: PayloadAction<number>) => ({
+        ...state,
+        pagination: {
+          limit: DEFAULT_PRODUCT_AMOUNT,
+          offset: action.payload
+        }
       })
     );
 });

@@ -17,11 +17,12 @@
   .searchDetailsHeader {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
 
     .detailsContainer {
       display: flex;
       flex-direction: row;
+      justify-content: flex-end;
+      width: 90%;
     }
   }
 }

@@ -15,10 +15,14 @@ export const clearFilter = createAction<string>(
 )
 
 export const changeSearch = createAction<string>(
-  ReduxStoreActionNameEnum.searchChange,
+  ReduxStoreActionNameEnum.searchChange
 );
 
 export const changeSort = createAction<ReduxSortDataInterface>(
-  ReduxStoreActionNameEnum.sortChange,
+  ReduxStoreActionNameEnum.sortChange
+);
+
+export const changeOffset = createAction<number>(
+  ReduxStoreActionNameEnum.offsetChange
 );
 
