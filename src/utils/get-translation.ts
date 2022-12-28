@@ -1,5 +1,6 @@
 import { LanguageEnum, TranslationComponentNameEnum } from '../enum';
 import plTranslation from '../constants/translations/pl';
+import enTranslation from '../constants/translations/en';
 
 export const getTranslation = (language: LanguageEnum, componentName: TranslationComponentNameEnum) => {
   const translationObject = getTranslationData(language);
@@ -8,7 +9,8 @@ export const getTranslation = (language: LanguageEnum, componentName: Translatio
 
 const getTranslationData = (language: LanguageEnum) => {
   const translationObjects = {
-    [LanguageEnum.pl]: plTranslation
+    [LanguageEnum.pl]: plTranslation,
+    [LanguageEnum.en]: enTranslation
   }
   return translationObjects[language];
 }

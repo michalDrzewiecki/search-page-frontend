@@ -1,5 +1,4 @@
-import { queries } from '@testing-library/react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { changeAllFiltersData } from '../../store/redux/actions/filters';

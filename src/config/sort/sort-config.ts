@@ -1,25 +1,12 @@
-import { SortValuesEnum } from '../../enum';
+import { LanguageEnum } from '../../enum';
 import { SortOptionInterface } from './interfaces';
+import enSortConfig from './locations/en';
+import plSortConfig from './locations/pl';
 
-export const sortConfig: SortOptionInterface[] = [
-  {
-    name: 'Wybierz sposób sortowania',
-    sortField: '',
-    sortValue: SortValuesEnum.descending
-  },
-  {
-    name: 'Od najpopularniejszych',
-    sortField: 'soldAmount',
-    sortValue: SortValuesEnum.descending
-  },
-  {
-    name: 'Cena: od najtańszych',
-    sortField: 'price.current',
-    sortValue: SortValuesEnum.ascending
-  },
-  {
-    name: 'Cena: od najdroższych',
-    sortField: 'price.current',
-    sortValue: SortValuesEnum.descending
-  }
-];
+const sortConfigData = {
+  [LanguageEnum.en]: enSortConfig,
+  [LanguageEnum.pl]: plSortConfig
+};
+
+export const sortConfig = (language?: LanguageEnum): SortOptionInterface[] => language ? sortConfigData[language] || enSortConfig : enSortConfig;
+

@@ -8,7 +8,7 @@ import {
 import { FilterElementType } from '../config/filters/types';
 import { sortConfig } from '../config/sort/sort-config';
 import { DEFAULT_PRODUCT_AMOUNT } from '../constants';
-import { FilteringKeyWordsEnum, FilteringSeparatorsEnum, FilterOperatorEnum } from '../enum';
+import { FilteringKeyWordsEnum, FilteringSeparatorsEnum, FilterOperatorEnum, LanguageEnum } from '../enum';
 import { FilterElementTypeEnum } from '../enum/filter-element-type.enum';
 import {
   ReduxFiltersDataInterface,
@@ -35,7 +35,7 @@ const parseSort = (sortData: string): Pick<ReduxFiltersDataInterface, 'sort'> | 
   try {
     const [field, value] = sortData.split(FilteringSeparatorsEnum.sortSeparator);
     const numericValue = +value;
-    const existingSortOption = sortConfig.find(option => option.sortValue === numericValue && option.sortField === field);
+    const existingSortOption = sortConfig().find(option => option.sortValue === numericValue && option.sortField === field);
     if (!existingSortOption) {
       return {};
     }
@@ -75,7 +75,7 @@ const parseFilter = (filters: string): Pick<ReduxFiltersDataInterface, 'filters'
       .split(FilteringSeparatorsEnum.filterSeparator)
       .forEach(singleFilterData => {
         const [field, operator, values] = singleFilterData.split(FilteringSeparatorsEnum.operatorSeparator);
-        const existingFilter = filterConfig
+        const existingFilter = filterConfig()
           .find(singleFilter => singleFilter.filterElementName === field);
         if (existingFilter && availableOperatorsPerFilterTypeConstant[existingFilter.type].includes(operator as FilterOperatorEnum)) {
           const parsedValues = values.split(FilteringSeparatorsEnum.valueSeparator);

@@ -3,20 +3,20 @@ import { TranslationInterface } from '../../interfaces';
 
 const translation: TranslationInterface = {
   [TranslationComponentNameEnum.productRecommendedList]: {
-    titleHeader: 'Polecane'
+    titleHeader: 'Recommended'
   },
   [TranslationComponentNameEnum.productAmount]: {
-    resultSuffix: 'wyników',
-    singleResultSuffix: 'wynik'
+    resultSuffix: 'results',
+    singleResultSuffix: 'result'
   },
   [TranslationComponentNameEnum.filters]: {
-    filtersTitle: 'Filtry',
-    clearAllFiltersText: 'Wyczyść wszystkie',
-    showAllFiltersText: 'Pokaż wszystkie filtry',
-    selectAllFiltersText: 'Zaznacz wszystkie'
+    filtersTitle: 'Filters',
+    clearAllFiltersText: 'Clear all',
+    showAllFiltersText: 'Show all filters',
+    selectAllFiltersText: 'Select all'
   },
   [TranslationComponentNameEnum.searchDetailsHeader]: {
-    of: 'z'
+    of: 'of'
   }
 };
 

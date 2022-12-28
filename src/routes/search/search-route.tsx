@@ -7,8 +7,11 @@ import { SideFilters } from '../../components/side-filters/side-filters';
 import './search-route.scss';
 import { filterConfig } from '../../config/filters/filter-config';
 import { SearchUrlParamsContainer } from '../../containers/search-url-params-container/search-url-params.container';
+import { useSelector } from '../../store/redux/useSelector';
 
 export const SearchRoute = () => {
+  const language = useSelector(state => state.languageConfig.language);
+
   return (
     <SearchUrlParamsContainer>
       <div className={'searchRoute'}>
@@ -17,7 +20,7 @@ export const SearchRoute = () => {
           <SearchHeader/>
           <div className={'searchContainer'}>
             <div>
-              <SideFilters filtersConfig={filterConfig}/>
+              <SideFilters filtersConfig={filterConfig(language)}/>
             </div>
             <div/>
             <div className={'resultsContainer'}>
