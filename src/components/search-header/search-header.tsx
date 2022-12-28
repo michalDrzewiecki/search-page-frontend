@@ -8,7 +8,7 @@ export const SearchHeader = () => {
   const productAmount = useSelector(state => state.productData.productAmount);
 
   return <div className={'searchHeader'}>
-    <RouteList routes={[{name: 'searchpage', link: ''}, {name: 'laptopy', link: ''}, {name: 'ultrabooki/notebooki', link: ''}]}/>
+    {/*<RouteList routes={[{name: 'searchpage', link: ''}, {name: 'laptopy', link: ''}, {name: 'ultrabooki/notebooki', link: ''}]}/>*/}
     <div className={'routeTitleContainer'}>
       <RouteTitle category={'Laptopy/Notebooki/Ultrabooki'}/>
       {productAmount ? <ProductCounter productAmount={productAmount}/> : null}

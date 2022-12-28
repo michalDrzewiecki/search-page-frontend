@@ -2,13 +2,14 @@ import { availableOperatorsPerFilterTypeConstant } from '../config/filters/const
 import { filterConfig } from '../config/filters/filter-config';
 import {
   CheckboxFilterElementInterface,
-  RadioFilterElementInterface, RangeFilterElementInterface,
+  RadioFilterElementInterface,
+  RangeFilterElementInterface,
   SelectFilterElementInterface
 } from '../config/filters/interfaces';
 import { FilterElementType } from '../config/filters/types';
 import { sortConfig } from '../config/sort/sort-config';
 import { DEFAULT_PRODUCT_AMOUNT } from '../constants';
-import { FilteringKeyWordsEnum, FilteringSeparatorsEnum, FilterOperatorEnum, LanguageEnum } from '../enum';
+import { FilteringKeyWordsEnum, FilteringSeparatorsEnum, FilterOperatorEnum } from '../enum';
 import { FilterElementTypeEnum } from '../enum/filter-element-type.enum';
 import {
   ReduxFiltersDataInterface,

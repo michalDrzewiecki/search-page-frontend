@@ -17,6 +17,9 @@ const translation: TranslationInterface = {
   },
   [TranslationComponentNameEnum.searchDetailsHeader]: {
     of: 'of'
+  },
+  [TranslationComponentNameEnum.header]: {
+    searchInputIntroText: 'What are You looking for?'
   }
 };
 
