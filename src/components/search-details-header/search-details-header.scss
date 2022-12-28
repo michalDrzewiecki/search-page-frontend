@@ -1,7 +1,10 @@
 @import 'src/styles/variables';
 @import 'src/styles/classes';
+@import 'src/styles/variables';
 
 .searchDetailsContainer {
+  height: $searchDetailsHeight;
+
   .lineContainer {
     @extend .searchDetailsLineContainer;
   }

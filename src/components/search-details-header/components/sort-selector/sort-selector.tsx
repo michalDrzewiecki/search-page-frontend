@@ -1,7 +1,7 @@
 import './sort-selector.scss';
 import { useDispatch } from 'react-redux';
 import { changeSort, clearSort } from '../../../../store/redux/actions/filters';
-import { DetailsHeaderSelect } from './components/details-header-select/details-header-select';
+import { SortSelect } from './components/sort-select/sort-select';
 import { SortSelectorPropsInterface } from './sort-selector-props.interface';
 
 export const SortSelector = ({sortConfig}: SortSelectorPropsInterface) => {
@@ -21,7 +21,7 @@ export const SortSelector = ({sortConfig}: SortSelectorPropsInterface) => {
       dispatch(clearSort());
   }
 
-  return <div className={'sortSelector'}>
-    <DetailsHeaderSelect options={sortConfig} onValueChange={onValueChange}/>
+  return <div className={'sortSelectorContainer'}>
+    <SortSelect options={sortConfig} onValueChange={onValueChange}/>
   </div>
 }

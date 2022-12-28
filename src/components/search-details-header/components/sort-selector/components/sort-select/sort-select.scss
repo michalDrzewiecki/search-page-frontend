@@ -1,0 +1,66 @@
+@import 'src/styles/variables';
+
+$elementPadding: $searchDetailsInputPadding 0 $searchDetailsInputPadding $searchDetailsInputPadding;
+
+.sortSelectContainer {
+    border: 1px solid $midGrey;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 260px;
+    position: absolute;
+    background-color: white;
+    margin-top: -($searchDetailsHeight - 2 * $searchDetailsInputPadding)/2;
+    font-size: 14px;
+    overflow: hidden;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    .sortSelect {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .sortSelectedOption {
+            padding: $elementPadding;
+            display: flex;
+            align-content: center;
+
+            .sortSelectedText {
+                width: 90%;
+            }
+
+            .sortSelectIcon {
+                width: 10%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 10px;
+            }
+        }
+
+        .sortSelectedOptionActive {
+            @extend .sortSelectedOption;
+            border-bottom: 1px solid $lightGrey;
+        }
+
+        .sortSelectOption {
+            width: 100%;
+            padding: $elementPadding;
+
+            &:hover {
+                cursor: pointer;
+                background-color: $midGrey;
+            }
+        }
+
+        .sortSelectOptionSelected {
+            @extend .sortSelectOption;
+            font-weight: bold;
+        }
+    }
+}

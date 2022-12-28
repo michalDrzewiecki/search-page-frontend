@@ -1,6 +1,6 @@
 import { SortOptionInterface } from '../../../../../../config/sort/interfaces';
 
-export interface DetailsHeaderSelectPropsInterface {
+export interface SortSelectPropsInterface {
   onValueChange: (value: string) => void;
   options: SortOptionInterface[];
 }
