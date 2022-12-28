@@ -16,7 +16,7 @@ export const SearchDetailsHeader = () => {
       <div>
         {/*<GridSelector/>*/}
       </div>
-      <div className={'detailsContainer'}>
+      <div className={'detailsSearchContainer'}>
         <SortSelector sortConfig={sortConfig(language)}/>
         <PageSelector/>
       </div>

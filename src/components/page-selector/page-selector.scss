@@ -1,5 +1,61 @@
+@import 'src/styles/variables';
+
+
 .pageSelector {
   display: flex;
   flex-direction: row;
-  margin-left: 10px;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  width: 20%;
+  margin-left: 20px;
+
+  .pageInputContainer {
+    border: 1px solid $midGrey;
+    border-radius: 20px;
+    padding: 8px 0 8px 8px;
+    width: 30%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .pageInput {
+      font-size: 15px;
+      border: 0;
+      width: 50%;
+      height: 100%;
+      outline: none;
+    }
+  }
+
+  .pageAmountTextContainer {
+    color: $darkGrey;
+    font-size: 13px;
+  }
+
+  .changePageButtonContainer {
+    background-color: $lighterGrey;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $lighterGreyOnHover;
+    }
+  }
+
+  .changePageButtonContainerDisabled {
+    @extend .changePageButtonContainer;
+    background-color: $veryLightGrey;
+
+    &:hover {
+      cursor: auto;
+      background-color: $veryLightGrey;
+    }
+  }
 }

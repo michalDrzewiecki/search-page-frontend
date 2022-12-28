@@ -9,12 +9,15 @@
   .searchDetailsHeader {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    height: 100%;
 
-    .detailsContainer {
+    .detailsSearchContainer {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
-      width: 90%;
+      align-items: center;
+      width: 100%;
     }
   }
 }
