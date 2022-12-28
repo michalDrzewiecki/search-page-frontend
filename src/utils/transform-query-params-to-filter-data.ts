@@ -2,7 +2,7 @@ import { availableOperatorsPerFilterTypeConstant } from '../config/filters/const
 import { filterConfig } from '../config/filters/filter-config';
 import {
   CheckboxFilterElementInterface,
-  RadioFilterElementInterface,
+  RadioFilterElementInterface, RangeFilterElementInterface,
   SelectFilterElementInterface
 } from '../config/filters/interfaces';
 import { FilterElementType } from '../config/filters/types';
@@ -55,10 +55,13 @@ const validateMultipleFilterOption = (values: string[], existingFilter: FilterEl
 };
 
 const validateRangeFilterOption = (values: string[], existingFilter: FilterElementType) => {
-  return false;
+  return values.length <= 2 &&
+    values.length > 0 &&
+    values.every(value => (existingFilter as RangeFilterElementInterface).validation(value)) &&
+    values.length === 2 ? +values[1] >= +values[0] : true
 };
 
-const validateMethodData: Record<FilterElementTypeEnum, (values: string[], existingFilter: FilterElementType) => boolean> = {
+const validateMethodData: Record<FilterElementTypeEnum, (values: string[], existingFilter: FilterElementType, operator?: FilterOperatorEnum) => boolean> = {
   [FilterElementTypeEnum.select]: validateSingleFilterOption,
   [FilterElementTypeEnum.radio]: validateSingleFilterOption,
   [FilterElementTypeEnum.checkbox]: validateMultipleFilterOption,
@@ -79,7 +82,8 @@ const parseFilter = (filters: string): Pick<ReduxFiltersDataInterface, 'filters'
           .find(singleFilter => singleFilter.filterElementName === field);
         if (existingFilter && availableOperatorsPerFilterTypeConstant[existingFilter.type].includes(operator as FilterOperatorEnum)) {
           const parsedValues = values.split(FilteringSeparatorsEnum.valueSeparator);
-          if (validateMethodData[existingFilter.type](parsedValues, existingFilter)) {
+          if (validateMethodData[existingFilter.type](parsedValues, existingFilter, operator as FilterOperatorEnum)) {
+            console.log('jestem do uja wafelka');
             parsedFilters.push({
               operator: operator as FilterOperatorEnum,
               field,
