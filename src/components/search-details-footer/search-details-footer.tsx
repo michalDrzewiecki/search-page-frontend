@@ -9,8 +9,5 @@ export const SearchDetailsFooter = () => {
     <div className={'searchDetailsFooter'}>
       <PageSelector/>
     </div>
-    <div className={'lineContainer'}>
-      <hr className={'line'}/>
-    </div>
   </div>
 }
