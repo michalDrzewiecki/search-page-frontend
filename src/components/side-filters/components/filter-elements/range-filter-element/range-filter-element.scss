@@ -5,16 +5,6 @@
   flex-direction: row;
   margin-bottom: $filterSingleElementBottomMargin;
 
-  .singleRangeContainer {
-    width: 40%;
-    display: flex;
-    justify-content: center;
-
-    input {
-      width: 90%;
-    }
-  }
-
   .lineContainer {
     width: 10%;
     display: flex;
@@ -24,7 +14,7 @@
     .line {
       width: 100%;
       margin: 0 10px 0 10px;
-      background-color: $lightGrey;
+      background-color: $darkGrey;
       border: none;
       height: 1px;
     }

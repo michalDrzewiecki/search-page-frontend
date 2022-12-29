@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { FilterOperatorEnum } from '../../../../../enum';
 import { changeFilters, clearFilter } from '../../../../../store/redux/actions/filters';
@@ -11,9 +12,16 @@ export const SelectFilterElement = ({params: {options, filterElementName}}: Sele
   const dispatch = useDispatch();
   const filtersData = useSelector(state => state.filtersData.filters);
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const selectRef = useRef<HTMLDivElement | null >(null);
 
   useEffect(() => {
-    if (selectedValue === null || externalFilterChange.current) {
+    if (externalFilterChange.current) {
+      return;
+    }
+    if (selectedValue === null) {
+      const defaultValue = options.find(option => !option.value) || options[0];
+      setSelectedValue(defaultValue?.value || null);
       return;
     }
     selectedValue ?
@@ -25,9 +33,8 @@ export const SelectFilterElement = ({params: {options, filterElementName}}: Sele
       dispatch(clearFilter(filterElementName));
   }, [selectedValue]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+  const handleClick = (value: string): void => {
     externalFilterChange.current = false;
-    const value = event.target.value
     const specificOption = options.find(option => option.value === value);
     if (!specificOption) {
       return;
@@ -53,11 +60,50 @@ export const SelectFilterElement = ({params: {options, filterElementName}}: Sele
     }
   }, [filtersData])
 
-  return <div className={'selectElementContainer'}>
-    <select onChange={handleChange} value={selectedValue || ''}>
-      {
-        options.map(option => <option key={option.value} value={option.value}>{option.displayName}</option>)
+  useEffect(() => {
+    const handler = (e: any): void => {
+      if (
+        isSelectOpen &&
+        selectRef.current &&
+        !selectRef.current.contains(e.target)
+      ) {
+        setIsSelectOpen(false);
       }
-    </select>
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  });
+
+  const getDisplayName = (value: string | null): string => {
+    return options?.find(option => option.value === value)?.displayName ?? '';
+  }
+
+  return <div
+    className={'selectContainer'}
+    ref={selectRef}
+    onClick={() => setIsSelectOpen(!isSelectOpen)}
+  >
+    <div
+      className='select'
+    >
+      <div className={isSelectOpen ? 'selectedOptionActive' : 'selectedOption'}>
+        <div className={'selectedText'}>
+          {getDisplayName(selectedValue)}
+        </div>
+        <div className={'selectIcon'}>
+          {isSelectOpen ? <AiFillCaretUp/> : <AiFillCaretDown/>}
+        </div>
+      </div>
+      {
+        isSelectOpen &&
+        options.map(option =>
+          <div
+            className={selectedValue === option.value ? 'selectOptionSelected' : 'selectOption'}
+            onClick={() => handleClick(option.value)}
+          >
+            {option.displayName}
+          </div>)
+      }
+    </div>
   </div>
 }

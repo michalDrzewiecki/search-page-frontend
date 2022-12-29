@@ -1,5 +1,67 @@
 @import 'src/styles/variables';
 
-.selectElementContainer {
-  margin-bottom: $filterSingleElementBottomMargin;
+$elementPadding: 8px 0px 8px 10px;
+
+.selectContainer {
+  border: 1px solid $midGrey;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  position: absolute;
+  background-color: white;
+  font-size: 14px;
+  overflow: hidden;
+  margin-top: 60px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .select {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .selectedOption {
+      padding: $elementPadding;
+      display: flex;
+      align-content: center;
+
+      .selectedText {
+        width: 90%;
+      }
+
+      .selectIcon {
+        width: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 10px;
+      }
+    }
+
+    .selectedOptionActive {
+      @extend .selectedOption;
+      border-bottom: 1px solid $lightGrey;
+    }
+
+    .selectOption {
+      width: 100%;
+      padding: $elementPadding;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $midGrey;
+      }
+    }
+
+    .selectOptionSelected {
+      @extend .selectOption;
+      font-weight: bold;
+    }
+  }
 }
+

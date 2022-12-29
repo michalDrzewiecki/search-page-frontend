@@ -1,0 +1,32 @@
+@import 'src/styles/variables';
+
+.singleRangeContainer {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  border: 1px solid $midGrey;
+  border-radius: 20px;
+  overflow: hidden;
+
+  input {
+    padding: 8px 0 8px 0;
+    width: 70%;
+    border: 0;
+    outline: none;
+    text-align: center;
+  }
+
+  .unitContainer {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $darkGrey;
+    font-size: 12px;
+  }
+}
+
+.singleRangeContainerWithError {
+  @extend .singleRangeContainer;
+  border: 1px solid red;
+}

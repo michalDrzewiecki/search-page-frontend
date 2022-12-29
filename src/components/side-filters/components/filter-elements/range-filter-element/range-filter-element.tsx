@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FilterOperatorEnum } from '../../../../../enum';
 import { changeFilters, clearFilter } from '../../../../../store/redux/actions/filters';
 import { useSelector } from '../../../../../store/redux/useSelector';
+import { RangeInput } from './components/range-input/range-input';
 import { RangeFilterElementPropsInterface } from './range-filter-element-props.interface';
 import './range-filter-element.scss';
 
@@ -21,8 +22,8 @@ export const RangeFilterElement = ({
   const [lowerValueTimer, setLowerValueTimer] = useState<NodeJS.Timeout | null>(null);
   const [upperValue, setUpperValue] = useState<string | null>(null);
   const [upperValueTimer, setUpperValueTimer] = useState<NodeJS.Timeout | null>(null);
+  const [invalidInput, setInvalidInput] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const externalFilterChange = useRef<boolean>(false);
   const filtersData = useSelector(state => state.filtersData.filters);
 
   const updateFiltersData = (lowerValue: string | null, upperValue: string | null): void => {
@@ -59,8 +60,10 @@ export const RangeFilterElement = ({
       clearTimeout(lowerValueTimer);
     }
     if (upperValue && +upperValue < +value) {
+      setInvalidInput(true);
       return;
     }
+    setInvalidInput(false);
     const newLowerValueTimer = setTimeout(() => {
       updateFiltersData(value, upperValue);
     }, REQUEST_SEND_DELAY_MS)
@@ -81,8 +84,10 @@ export const RangeFilterElement = ({
     }
     setUpperValue(value);
     if (lowerValue && +lowerValue > +value) {
+      setInvalidInput(true);
       return;
     }
+    setInvalidInput(false);
     if (upperValueTimer) {
       clearTimeout(upperValueTimer);
     }
@@ -124,24 +129,22 @@ export const RangeFilterElement = ({
   }, [filtersData]);
 
   return <div className={'rangeFilterContainer'}>
-    <div className={'singleRangeContainer'}>
-      <input
-        type={'text'}
-        value={lowerValue === null ? firstText : lowerValue}
-        onFocus={onLowerRangeFocus}
-        onChange={onLowerValueChange}
-      />
-    </div>
+    <RangeInput
+      value={lowerValue === null ? firstText : lowerValue}
+      unit={firstUnit}
+      isInvalidInput={invalidInput}
+      onFocus={onLowerRangeFocus}
+      onChange={onLowerValueChange}
+    />
     <div className={'lineContainer'}>
       <hr className={'line'}/>
     </div>
-    <div className={'singleRangeContainer'}>
-      <input
-        type={'text'}
-        value={upperValue === null ? secondText : upperValue}
-        onFocus={onUpperRangeFocus}
-        onChange={onUpperValueChange}
-      />
-    </div>
+    <RangeInput
+      value={upperValue === null ? secondText : upperValue}
+      unit={secondUnit}
+      isInvalidInput={invalidInput}
+      onFocus={onUpperRangeFocus}
+      onChange={onUpperValueChange}
+    />
   </div>
 }

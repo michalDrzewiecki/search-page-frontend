@@ -5,7 +5,7 @@
   justify-content: center;
 
   .sideFiltersContainer {
-    width: 100%;
+    min-width: 300px;
     border-radius: 20px;
     border: 1px solid $lightGrey;
     padding-bottom: 30px;

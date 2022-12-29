@@ -21,7 +21,7 @@
       }
 
       p {
-        color: $lightGrey;
+        color: $darkGrey;
         font-size: 12px;
         background-color: white;
 
@@ -34,5 +34,6 @@
 
   .filterElementContainer {
     margin-bottom: 15px;
+    min-height: 90px;
   }
 }

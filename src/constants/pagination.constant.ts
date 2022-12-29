@@ -1,1 +1,1 @@
-export const DEFAULT_PRODUCT_AMOUNT = 100;
+export const DEFAULT_PRODUCT_AMOUNT = 24;
