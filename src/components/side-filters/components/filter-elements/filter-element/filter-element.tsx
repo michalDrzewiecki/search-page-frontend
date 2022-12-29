@@ -1,6 +1,8 @@
 import React from 'react';
 import { FilterElementType } from '../../../../../config/filters/types';
 import { FilterElementTypeEnum } from '../../../../../enum/filter-element-type.enum';
+import { useSelector } from '../../../../../store/redux/useSelector';
+import { getTranslation } from '../../../../../utils';
 import { CheckboxFilterElement } from '../checkbox-filter-element/checkbox-filter-element';
 import { RadioFilterElement } from '../radio-filter-element/radio-filter-element';
 import { RangeFilterElement } from '../range-filter-element/range-filter-element';

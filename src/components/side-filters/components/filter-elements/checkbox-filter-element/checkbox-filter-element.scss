@@ -1,5 +1,19 @@
 @import 'src/styles/variables';
 
-.checkboxElement {
-  margin-bottom: $filterSingleElementBottomMargin;
+.checkBoxContainer {
+
+  .selectAll {
+    color: $darkGrey;
+    font-size: 13px;
+    margin-top: -15px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .checkboxElement {
+    margin-bottom: $filterSingleElementBottomMargin;
+  }
 }
+

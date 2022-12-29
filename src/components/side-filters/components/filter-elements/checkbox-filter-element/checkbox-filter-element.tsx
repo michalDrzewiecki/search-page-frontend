@@ -1,16 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { FilterOperatorEnum } from '../../../../../enum';
+import { FilterOperatorEnum, TranslationComponentNameEnum } from '../../../../../enum';
+import { FiltersTranslationData } from '../../../../../interfaces';
 import { changeFilters, clearFilter } from '../../../../../store/redux/actions/filters';
 import { useSelector } from '../../../../../store/redux/useSelector';
+import { getTranslation } from '../../../../../utils';
 import { CheckboxFilterElementPropsInterface } from './checkbox-filter-element-props-interface';
 import './checkbox-filter-element.scss';
 
-export const CheckboxFilterElement = ({params: {options, filterElementName}}: CheckboxFilterElementPropsInterface) => {
+export const CheckboxFilterElement = ({params: {options, filterElementName, selectAllOption}}: CheckboxFilterElementPropsInterface) => {
   const [selectedValues, setSelectedValues] = useState<string[] | null>(null);
   const externalFilterChange = useRef<boolean>(false);
   const dispatch = useDispatch();
   const filtersData = useSelector(state => state.filtersData.filters);
+  const language = useSelector(state => state.languageConfig.language);
+  const translations = getTranslation(language, TranslationComponentNameEnum.filters) as FiltersTranslationData;
 
   useEffect(() => {
     if (!selectedValues || externalFilterChange.current) {
@@ -58,7 +62,22 @@ export const CheckboxFilterElement = ({params: {options, filterElementName}}: Ch
     }
   }, [filtersData]);
 
-  return <div>
+  const onSelectAllClick = (): void => {
+    externalFilterChange.current = false;
+    setSelectedValues(options.map(option => option.value));
+  }
+
+  return <div className={'checkBoxContainer'}>
+    {
+      selectAllOption ?
+        <p
+          className={'selectAll'}
+          onClick={onSelectAllClick}
+        >
+          {translations.selectAllFiltersText}
+        </p> :
+        null
+    }
     {
       options.map(option => <div key={option.value} className={'checkboxElement'}>
         <input

@@ -88,11 +88,11 @@ const filterConfig: FilterElementType[] = [
     filterElementName: 'state',
     options: [
       {
-        displayName: 'nowy',
+        displayName: 'Nowy',
         value: 'new'
       },
       {
-        displayName: 'używany',
+        displayName: 'Używany',
         value: 'used'
       }
     ],

@@ -10,6 +10,7 @@ $elementPadding: $searchDetailsInputPadding 0 $searchDetailsInputPadding $search
     align-items: center;
     width: 260px;
     position: absolute;
+    //z-index: -1;
     background-color: white;
     margin-top: -($searchDetailsHeight - 2 * $searchDetailsInputPadding)/2;
     font-size: 14px;

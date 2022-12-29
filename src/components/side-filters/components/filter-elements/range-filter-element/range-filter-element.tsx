@@ -60,10 +60,8 @@ export const RangeFilterElement = ({
       clearTimeout(lowerValueTimer);
     }
     if (upperValue && +upperValue < +value) {
-      setInvalidInput(true);
       return;
     }
-    setInvalidInput(false);
     const newLowerValueTimer = setTimeout(() => {
       updateFiltersData(value, upperValue);
     }, REQUEST_SEND_DELAY_MS)
@@ -84,10 +82,8 @@ export const RangeFilterElement = ({
     }
     setUpperValue(value);
     if (lowerValue && +lowerValue > +value) {
-      setInvalidInput(true);
       return;
     }
-    setInvalidInput(false);
     if (upperValueTimer) {
       clearTimeout(upperValueTimer);
     }
@@ -127,6 +123,14 @@ export const RangeFilterElement = ({
       }
     }
   }, [filtersData]);
+
+  useEffect(() => {
+    if (lowerValue && upperValue && +lowerValue > +upperValue) {
+      setInvalidInput(true);
+      return;
+    }
+    setInvalidInput(false);
+  }, [lowerValue, upperValue])
 
   return <div className={'rangeFilterContainer'}>
     <RangeInput
