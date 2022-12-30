@@ -13,7 +13,7 @@ export const SideFilters = ({filtersConfig}: SideFiltersPropsInterface) => {
     <div className={'sideFiltersContainer'}>
       <SideFiltersCategorySelector/>
       <Filters filtersConfig={sideFilters}/>
-      <ExpandFilters/>
+      {/*<ExpandFilters/>*/}
     </div>
   </div>
 }

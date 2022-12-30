@@ -29,7 +29,7 @@ export const Filters = ({filtersConfig}: FiltersPropsInterface) => {
         <h2>{translations.filtersTitle}</h2>
         <p onClick={onClearFiltersClick}>{translations.clearAllFiltersText}</p>
       </div>
-      <ShowAllFilters/>
+      {/*<ShowAllFilters/>*/}
     </div>
     {filtersConfig.map((filterConfig, index) => <div key={index} className={'filterElementContainer'}>
       <FilterElement filterConfig={filterConfig}/>
