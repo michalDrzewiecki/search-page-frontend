@@ -25,10 +25,15 @@ export interface HeaderData {
   searchInputIntroText: string;
 }
 
+export interface SearchHeaderData {
+  productsText: string;
+}
+
 export interface TranslationInterface {
   [TranslationComponentNameEnum.productRecommendedList]: ProductRecommendedListTranslationData;
   [TranslationComponentNameEnum.productAmount]: ProductAmountTranslationData;
   [TranslationComponentNameEnum.filters]: FiltersTranslationData;
   [TranslationComponentNameEnum.searchDetailsHeader]: SearchDetailsHeaderData;
   [TranslationComponentNameEnum.header]: HeaderData;
+  [TranslationComponentNameEnum.searchHeader]: SearchHeaderData;
 }

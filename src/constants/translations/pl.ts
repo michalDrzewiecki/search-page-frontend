@@ -21,6 +21,9 @@ const translation: TranslationInterface = {
   },
   [TranslationComponentNameEnum.header]: {
     searchInputIntroText: 'Czego szukasz?'
+  },
+  [TranslationComponentNameEnum.searchHeader]: {
+    productsText: 'Produkty'
   }
 };
 
