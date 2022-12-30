@@ -24,7 +24,7 @@ export const ProductList = () => {
       dispatch(changeProductAmount(response.count));
     }
     fetchProducts();
-  }, [filterData, categoryData]);
+  }, [filterData, categoryData.selectedCategory.name, categoryData.selectedSubcategory.name]);
 
   return <div className={'productList'}>
     {products.map(product => <Product key={product.id} product={product}/>)}

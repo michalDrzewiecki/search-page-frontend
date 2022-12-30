@@ -6,4 +6,4 @@ export * from './transform-filter-data-to-query-params';
 export * from './calculate-page-based-on-offset';
 export * from './calculate-offset-based-on-page';
 export * from './map-language';
-export * from './get-market-query-param';
+export * from './get-query-param';

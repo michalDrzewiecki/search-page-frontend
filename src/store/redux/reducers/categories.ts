@@ -1,8 +1,13 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
-import { changeCategories, clearAllCategories } from '../actions/categories';
-import { ReduxCategoriesInterface } from '../interfaces/redux-categories.interface';
+import { changeCategories, changeSelectedCategories, clearAllSelectedCategories } from '../actions/categories';
+import {
+  ReduxCategoriesDataInterface,
+  ReduxCategoriesInterface,
+  ReduxSelectedCategoriesInterface
+} from '../interfaces';
 
-const initialCategoryData: ReduxCategoriesInterface = {
+const initialCategoryData: ReduxCategoriesDataInterface = {
+  categories: [],
   selectedCategory: {
     displayName: '',
     name: ''
@@ -19,9 +24,17 @@ export const categoryReducer = createReducer(initialCategoryData, (builder) => {
       changeCategories,
       (state, action: PayloadAction<ReduxCategoriesInterface>) => ({
         ...state,
+        ...action.payload
+      })
+    )
+    .addCase(
+      changeSelectedCategories,
+      (state, action: PayloadAction<ReduxSelectedCategoriesInterface>) => ({
+        ...state,
         ...action.payload,
       }),
-    ).addCase(clearAllCategories,
+    ).addCase(
+      clearAllSelectedCategories,
     (state) => ({
       ...state,
       ...initialCategoryData

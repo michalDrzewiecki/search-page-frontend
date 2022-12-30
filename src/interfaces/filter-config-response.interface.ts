@@ -1,7 +1,7 @@
-import { FilterElementInterface } from '../config/filters/interfaces';
+import { FilterElementType } from '../config/filters/types';
 import { SortOptionInterface } from '../config/sort/interfaces';
 
 export interface FilterConfigResponseInterface {
-  filters: FilterElementInterface[];
+  filters: FilterElementType[];
   sort: SortOptionInterface[];
 }

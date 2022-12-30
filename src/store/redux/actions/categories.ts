@@ -1,11 +1,15 @@
 import { createAction } from '@reduxjs/toolkit';
 import { ReduxStoreActionNameEnum } from '../../../enum';
-import { ReduxCategoriesInterface } from '../interfaces/redux-categories.interface';
+import { ReduxCategoriesInterface, ReduxSelectedCategoriesInterface } from '../interfaces';
 
 export const changeCategories = createAction<ReduxCategoriesInterface>(
-  ReduxStoreActionNameEnum.categoriesChange,
+  ReduxStoreActionNameEnum.categoriesChange
+)
+
+export const changeSelectedCategories = createAction<ReduxSelectedCategoriesInterface>(
+  ReduxStoreActionNameEnum.selectedCategoriesChange,
 );
 
-export const clearAllCategories = createAction(
-  ReduxStoreActionNameEnum.categoriesClearAll,
+export const clearAllSelectedCategories = createAction(
+  ReduxStoreActionNameEnum.selectedCategoriesClearAll,
 );

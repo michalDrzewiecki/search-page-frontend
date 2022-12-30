@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { availableFiltersReducer } from './reducers/available-filters';
 import { categoryReducer } from './reducers/categories';
 import { filtersReducer } from './reducers/filters';
 import { languageReducer } from './reducers/language';
@@ -8,7 +9,8 @@ const rootReducer = combineReducers({
   languageConfig: languageReducer,
   productData: productReducer,
   filtersData: filtersReducer,
-  categoryData: categoryReducer
+  categoryData: categoryReducer,
+  availableFiltersData: availableFiltersReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

@@ -42,7 +42,7 @@ export const SearchHeader = () => {
     }
     setRouteTitle(routeTitle);
     setRoutes(newRoutes);
-  }, [categoryData, filterData.search]);
+  }, [categoryData.selectedCategory.name, categoryData.selectedSubcategory.name, filterData.search]);
 
   return <div className={'searchHeader'}>
     {routes.length ? <RouteList routes={routes}/> : null}

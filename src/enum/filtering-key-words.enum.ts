@@ -6,5 +6,6 @@ export enum FilteringKeyWordsEnum {
   filter = 'filter',
   page = 'page',
   category = 'category',
-  subcategory = 'subcategory'
+  subcategory = 'subcategory',
+  market = 'market'
 }

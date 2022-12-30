@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { TranslationComponentNameEnum } from '../../../../enum';
 import { CategoryInterface, FiltersTranslationData } from '../../../../interfaces';
-import { CategoryService } from '../../../../services/category.service';
-import { changeCategories, clearAllCategories } from '../../../../store/redux/actions/categories';
+import { changeSelectedCategories, clearAllSelectedCategories } from '../../../../store/redux/actions/categories';
 import { useSelector } from '../../../../store/redux/useSelector';
-import { getMarketQueryParam, getTranslation } from '../../../../utils';
+import { getTranslation } from '../../../../utils';
 import { CategoryTitle } from './components/category-title/category-title';
 import './side-filters-category-selector.scss';
 
@@ -20,12 +19,8 @@ export const SideFiltersCategorySelector = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      const fetchedCategories = await new CategoryService().fetchCategories(getMarketQueryParam(language));
-      setCategories(fetchedCategories);
-    };
-    fetchCategories();
-  }, [language]);
+    setCategories(categoryData.categories);
+  }, categoryData.categories)
 
   useEffect(() => {
     if (selectedCategory !== categoryData.selectedCategory.name) {
@@ -34,7 +29,7 @@ export const SideFiltersCategorySelector = () => {
     if (selectedSubcategory !== categoryData.selectedSubcategory.name) {
       setSelectedSubcategory(categoryData.selectedSubcategory.name);
     }
-  }, [categoryData])
+  }, [categoryData.selectedCategory.name, categoryData.selectedSubcategory.name])
 
   const isAllCategoriesActive = (): boolean => !selectedCategory && !selectedSubcategory;
   const isCategoryActive = (name: string): boolean => name === selectedCategory;
@@ -44,7 +39,7 @@ export const SideFiltersCategorySelector = () => {
     const foundCategory = categories.find(category => category.displayName === displayName);
     setSelectedCategory(foundCategory?.name || '');
     setSelectedSubcategory('');
-    dispatch(changeCategories({
+    dispatch(changeSelectedCategories({
       selectedCategory: {
         displayName: foundCategory?.displayName || '',
         name: foundCategory?.name || ''
@@ -66,7 +61,7 @@ export const SideFiltersCategorySelector = () => {
     const foundSubcategory = foundCategory.subcategories.find(subcategory => subcategory.displayName === displayName);
     setSelectedCategory(foundCategory.name);
     setSelectedSubcategory(foundSubcategory?.name || '')
-    dispatch(changeCategories({
+    dispatch(changeSelectedCategories({
       selectedCategory: {
         displayName: foundCategory.displayName,
         name: foundCategory.name
@@ -81,7 +76,7 @@ export const SideFiltersCategorySelector = () => {
   const handleAllCategoryClick = (): void => {
     setSelectedSubcategory('');
     setSelectedCategory('');
-    dispatch(clearAllCategories());
+    dispatch(clearAllSelectedCategories());
   }
 
   return <div className={'sideFiltersCategorySelector'}>

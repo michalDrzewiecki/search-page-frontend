@@ -1,5 +1,4 @@
 import { availableOperatorsPerFilterTypeConstant } from '../config/filters/constants';
-import { filterConfig } from '../config/filters/filter-config';
 import {
   CheckboxFilterElementInterface,
   RadioFilterElementInterface,
@@ -7,11 +6,10 @@ import {
   SelectFilterElementInterface
 } from '../config/filters/interfaces';
 import { FilterElementType } from '../config/filters/types';
-import { sortConfig } from '../config/sort/sort-config';
 import { DEFAULT_PRODUCT_AMOUNT } from '../constants';
 import { FilteringKeyWordsEnum, FilteringSeparatorsEnum, FilterOperatorEnum } from '../enum';
 import { FilterElementTypeEnum } from '../enum/filter-element-type.enum';
-import { ReduxCategoriesInterface } from '../store/redux/interfaces/redux-categories.interface';
+import { ReduxAvailableFiltersInterface } from '../store/redux/interfaces';
 import {
   ReduxFiltersDataInterface,
   ReduxSingleFilterDataInterface
@@ -30,14 +28,14 @@ const parsePage = (page: string): Pick<ReduxFiltersDataInterface, 'pagination'> 
     }};
 }
 
-const parseSort = (sortData: string): Pick<ReduxFiltersDataInterface, 'sort'> | {} => {
+const parseSort = (sortData: string, {availableSortOptions}: ReduxAvailableFiltersInterface): Pick<ReduxFiltersDataInterface, 'sort'> | {} => {
   if (!sortData) {
     return {};
   }
   try {
     const [field, value] = sortData.split(FilteringSeparatorsEnum.sortSeparator);
     const numericValue = +value;
-    const existingSortOption = sortConfig().find(option => option.sortValue === numericValue && option.sortField === field);
+    const existingSortOption = availableSortOptions.find(option => option.sortValue === numericValue && option.sortField === field);
     if (!existingSortOption) {
       return {};
     }
@@ -70,7 +68,7 @@ const validateMethodData: Record<FilterElementTypeEnum, (values: string[], exist
   [FilterElementTypeEnum.range]: validateRangeFilterOption
 }
 
-const parseFilter = (filters: string): Pick<ReduxFiltersDataInterface, 'filters'> | {} => {
+const parseFilter = (filters: string, {availableFilters}: ReduxAvailableFiltersInterface): Pick<ReduxFiltersDataInterface, 'filters'> | {} => {
   if (!filters) {
     return {};
   }
@@ -80,12 +78,11 @@ const parseFilter = (filters: string): Pick<ReduxFiltersDataInterface, 'filters'
       .split(FilteringSeparatorsEnum.filterSeparator)
       .forEach(singleFilterData => {
         const [field, operator, values] = singleFilterData.split(FilteringSeparatorsEnum.operatorSeparator);
-        const existingFilter = filterConfig()
+        const existingFilter = availableFilters
           .find(singleFilter => singleFilter.filterElementName === field);
         if (existingFilter && availableOperatorsPerFilterTypeConstant[existingFilter.type].includes(operator as FilterOperatorEnum)) {
           const parsedValues = values.split(FilteringSeparatorsEnum.valueSeparator);
           if (validateMethodData[existingFilter.type](parsedValues, existingFilter, operator as FilterOperatorEnum)) {
-            console.log('jestem do uja wafelka');
             parsedFilters.push({
               operator: operator as FilterOperatorEnum,
               field,
@@ -107,7 +104,7 @@ const parseSearch = (search: string): Pick<ReduxFiltersDataInterface, 'search'> 
   return {search: search};
 }
 
-const queryParamsParseMethods: Record<string, (data: string) => Record<string, any> >= {
+const queryParamsParseMethods: Record<string, (data: string, availableFilters: ReduxAvailableFiltersInterface) => Record<string, any> >= {
   [FilteringKeyWordsEnum.search]: parseSearch,
   [FilteringKeyWordsEnum.filter]: parseFilter,
   [FilteringKeyWordsEnum.sort]: parseSort,
@@ -117,14 +114,14 @@ const queryParamsParseMethods: Record<string, (data: string) => Record<string, a
 
 };
 
-export const transformQueryParamsToFilterData = (filtersData: Record<string, string>): ReduxFiltersDataInterface => {
+export const transformQueryParamsToFilterData = (filtersData: Record<string, string>, availableFilters: ReduxAvailableFiltersInterface): ReduxFiltersDataInterface => {
   let parsedFiltersData = {};
   for (const key in filtersData) {
     const parser = queryParamsParseMethods[key as FilteringKeyWordsEnum];
     if (!parser) {
       continue;
     }
-    parsedFiltersData = {...parsedFiltersData, ...parser(filtersData[key])}
+    parsedFiltersData = {...parsedFiltersData, ...parser(filtersData[key], availableFilters)}
   }
   return parsedFiltersData as ReduxFiltersDataInterface;
 }
