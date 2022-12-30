@@ -14,6 +14,7 @@ export interface FiltersTranslationData {
   clearAllFiltersText: string;
   showAllFiltersText: string;
   selectAllFiltersText: string;
+  selectAllCategories: string;
 }
 
 export interface SearchDetailsHeaderData {

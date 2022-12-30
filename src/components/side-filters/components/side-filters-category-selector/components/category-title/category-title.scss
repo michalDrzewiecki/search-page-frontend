@@ -1,0 +1,25 @@
+@import 'src/styles/variables';
+
+.categoryTitleContainer {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  padding: 5px 0 0 0;
+
+  .categoryTitle {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .categoryTitleActive {
+    @extend .categoryTitle;
+    font-weight: bold;
+  }
+
+  .productAmount {
+    color: $darkGrey;
+    padding: 0 0 0 5px;
+  }
+}
+

@@ -13,7 +13,8 @@ const translation: TranslationInterface = {
     filtersTitle: 'Filters',
     clearAllFiltersText: 'Clear all',
     showAllFiltersText: 'Show all filters',
-    selectAllFiltersText: 'Select all'
+    selectAllFiltersText: 'Select all',
+    selectAllCategories: 'All categories'
   },
   [TranslationComponentNameEnum.searchDetailsHeader]: {
     of: 'of'

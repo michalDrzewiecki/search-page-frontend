@@ -8,5 +8,7 @@ export enum ReduxStoreActionNameEnum {
   searchChange = 'searchChange',
   sortChange = 'sortChange',
   sortClear = 'sortClear',
-  offsetChange = 'offsetChange'
+  offsetChange = 'offsetChange',
+  categoriesChange = 'categoriesChange',
+  categoriesClearAll = 'categoriesClearAll'
 }

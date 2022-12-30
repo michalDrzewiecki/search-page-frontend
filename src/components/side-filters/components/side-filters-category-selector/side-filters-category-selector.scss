@@ -1,3 +1,12 @@
+@import 'src/styles/variables';
+
 .sideFiltersCategorySelector {
-  background-color: blanchedalmond;
+  border-bottom: 1px solid $lightGrey;;
+
+  .categoryData {
+    margin: $filtersMargin 0 $filtersMargin $filtersMargin;
+    .subcategoryData {
+      margin-left: $filtersMargin;
+    }
+  }
 }
