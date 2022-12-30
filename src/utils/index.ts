@@ -7,3 +7,4 @@ export * from './calculate-page-based-on-offset';
 export * from './calculate-offset-based-on-page';
 export * from './map-language';
 export * from './get-query-param';
+export * from './get-category-resource-name';

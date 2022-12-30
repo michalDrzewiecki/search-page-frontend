@@ -12,5 +12,5 @@ export enum ReduxStoreActionNameEnum {
   selectedCategoriesChange = 'selectedCategoriesChange',
   selectedCategoriesClearAll = 'selectedCategoriesClearAll',
   categoriesChange = 'categoriesChange',
-  availableFiltersChange = 'availableFitlersChange'
+  availableFiltersChange = 'availableFiltersChange'
 }
