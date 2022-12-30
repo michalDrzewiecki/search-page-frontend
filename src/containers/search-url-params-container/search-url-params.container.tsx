@@ -14,6 +14,7 @@ export const SearchUrlParamsContainer = ({children}: SearchUrlParamsContainerPro
   const [searchParams, setSearchParams] = useSearchParams();
   const [areQueryParamsParsed, setAreQueryParamsParsed] = useState<boolean>(false);
   const filtersData = useSelector(state => state.filtersData);
+  const categoryData = useSelector(state => state.categoryData);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,11 +28,11 @@ export const SearchUrlParamsContainer = ({children}: SearchUrlParamsContainerPro
   }, [])
 
   useEffect(() => {
-    const queryParams = transformPaginationDataToVisibleQuery(transformFilterDataToQueryParams(filtersData));
+    const queryParams = transformPaginationDataToVisibleQuery(transformFilterDataToQueryParams(filtersData, categoryData));
     if (queryParams !== searchParams.toString()) {
       setSearchParams(queryParams);
     }
-  }, [filtersData]);
+  }, [filtersData, categoryData]);
 
   return <>{areQueryParamsParsed ? children : null}</>;
 };

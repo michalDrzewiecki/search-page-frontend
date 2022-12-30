@@ -4,5 +4,7 @@ export enum FilteringKeyWordsEnum {
   sort = 'sort',
   search = 'search',
   filter = 'filter',
-  page = 'page'
+  page = 'page',
+  category = 'category',
+  subcategory = 'subcategory'
 }

@@ -8,7 +8,7 @@ export class ProductService extends HttpRequestService {
     return this.get<ResourceResponseInterface<ProductInterface>>(`${config.productService.url}/products?${queryParams}`);
   }
 
-  public async fetchRecommendedProducts(): Promise<ProductInterface[]> {
-    return this.get<ProductInterface[]>(`${config.productService.url}/products/recommended`);
+  public async fetchRecommendedProducts(queryParams: string): Promise<ProductInterface[]> {
+    return this.get<ProductInterface[]>(`${config.productService.url}/products/recommended?${queryParams}`);
   }
 }

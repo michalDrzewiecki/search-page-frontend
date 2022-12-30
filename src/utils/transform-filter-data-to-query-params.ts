@@ -1,3 +1,4 @@
+import { ReduxCategoriesInterface } from '../store/redux/interfaces/redux-categories.interface';
 import {
   ReduxFiltersDataInterface, ReduxPaginationDataInterface,
   ReduxSingleFilterDataInterface,
@@ -6,9 +7,12 @@ import {
 import { FilteringKeyWordsEnum, FilteringSeparatorsEnum } from '../enum';
 
 
-export const transformFilterDataToQueryParams = (filtersData: ReduxFiltersDataInterface): string => {
+export const transformFilterDataToQueryParams = (
+  filtersData: ReduxFiltersDataInterface,
+  categoryData: ReduxCategoriesInterface
+): string => {
   const {filters, sort, search, pagination} = filtersData;
-  return `${parseSortData(sort)}${parseSearchData(search)}${parseFilterData(filters)}${parsePaginationData(pagination)}`;
+  return `${parseSortData(sort)}${parseSearchData(search)}${parseFilterData(filters)}${parsePaginationData(pagination)}${parseCategoryData(categoryData)}`;
 };
 
 const parseSortData = (sortData: ReduxSortDataInterface): string => {
@@ -38,3 +42,9 @@ const parseFilterData = (filtersData: ReduxSingleFilterDataInterface[]): string 
 const parsePaginationData = ({limit, offset}: ReduxPaginationDataInterface): string => {
   return `${FilteringKeyWordsEnum.limit}=${limit}&${FilteringKeyWordsEnum.offset}=${offset}&`
 };
+
+const parseCategoryData = ({selectedCategory, selectedSubcategory}: ReduxCategoriesInterface): string => {
+  const selectedCategoryParam = selectedCategory.name ? `category=${selectedCategory.name}&` : '';
+  const selectedSubcategoryParam = selectedSubcategory.name ? `subcategory=${selectedSubcategory.name}&` : '';
+  return `${selectedCategoryParam}${selectedSubcategoryParam}`;
+}

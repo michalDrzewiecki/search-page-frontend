@@ -3,7 +3,7 @@ import { TranslationInterface } from '../../interfaces';
 
 const translation: TranslationInterface = {
   [TranslationComponentNameEnum.productRecommendedList]: {
-    titleHeader: 'Recommended'
+    titleHeader: 'Recommended in category'
   },
   [TranslationComponentNameEnum.productAmount]: {
     resultSuffix: 'results',

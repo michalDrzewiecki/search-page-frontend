@@ -11,6 +11,7 @@ import { sortConfig } from '../config/sort/sort-config';
 import { DEFAULT_PRODUCT_AMOUNT } from '../constants';
 import { FilteringKeyWordsEnum, FilteringSeparatorsEnum, FilterOperatorEnum } from '../enum';
 import { FilterElementTypeEnum } from '../enum/filter-element-type.enum';
+import { ReduxCategoriesInterface } from '../store/redux/interfaces/redux-categories.interface';
 import {
   ReduxFiltersDataInterface,
   ReduxSingleFilterDataInterface
@@ -106,7 +107,7 @@ const parseSearch = (search: string): Pick<ReduxFiltersDataInterface, 'search'> 
   return {search: search};
 }
 
-const queryParamsParseMethods: Record<FilteringKeyWordsEnum, (data: string) => Record<string, any> >= {
+const queryParamsParseMethods: Record<string, (data: string) => Record<string, any> >= {
   [FilteringKeyWordsEnum.search]: parseSearch,
   [FilteringKeyWordsEnum.filter]: parseFilter,
   [FilteringKeyWordsEnum.sort]: parseSort,
