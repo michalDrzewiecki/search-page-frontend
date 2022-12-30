@@ -15,6 +15,7 @@ import {
   ReduxSingleFilterDataInterface
 } from '../store/redux/interfaces/redux-filters-data.interface';
 import { calculateOffsetBasedOnPage } from './calculate-offset-based-on-page';
+import { validateRangeInput } from './validate-range-input';
 
 const parsePage = (page: string): Pick<ReduxFiltersDataInterface, 'pagination'> | {} => {
   const numericPageValue = +page;
@@ -57,7 +58,7 @@ const validateMultipleFilterOption = (values: string[], existingFilter: FilterEl
 const validateRangeFilterOption = (values: string[], existingFilter: FilterElementType) => {
   return values.length <= 2 &&
     values.length > 0 &&
-    values.every(value => (existingFilter as RangeFilterElementInterface).validation(value)) &&
+    values.every(value => validateRangeInput(value, (existingFilter as RangeFilterElementInterface).validation)) &&
     values.length === 2 ? +values[1] >= +values[0] : true
 };
 

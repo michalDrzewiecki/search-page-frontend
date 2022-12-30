@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { FilterOperatorEnum } from '../../../../../enum';
 import { changeFilters, clearFilter } from '../../../../../store/redux/actions/filters';
 import { useSelector } from '../../../../../store/redux/useSelector';
+import { validateRangeInput } from '../../../../../utils/validate-range-input';
 import { RangeInput } from './components/range-input/range-input';
 import { RangeFilterElementPropsInterface } from './range-filter-element-props.interface';
 import './range-filter-element.scss';
@@ -52,7 +53,7 @@ export const RangeFilterElement = ({
 
   const onLowerValueChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
-    if (value && !validation(value)) {
+    if (value && !validateRangeInput(value, validation)) {
       return;
     }
     setLowerValue(value);
@@ -77,7 +78,7 @@ export const RangeFilterElement = ({
 
   const onUpperValueChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
-    if (value && !validation(value)) {
+    if (value && !validateRangeInput(value, validation)) {
       return;
     }
     setUpperValue(value);
