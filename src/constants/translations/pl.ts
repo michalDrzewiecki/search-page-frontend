@@ -24,6 +24,9 @@ const translation: TranslationInterface = {
   },
   [TranslationComponentNameEnum.searchHeader]: {
     productsText: 'Produkty'
+  },
+  [TranslationComponentNameEnum.modal]: {
+    closeModalText: 'Zamknij okno'
   }
 };
 

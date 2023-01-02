@@ -29,6 +29,10 @@ export interface SearchHeaderData {
   productsText: string;
 }
 
+export interface ModalData {
+  closeModalText: string;
+}
+
 export interface TranslationInterface {
   [TranslationComponentNameEnum.productRecommendedList]: ProductRecommendedListTranslationData;
   [TranslationComponentNameEnum.productAmount]: ProductAmountTranslationData;
@@ -36,4 +40,5 @@ export interface TranslationInterface {
   [TranslationComponentNameEnum.searchDetailsHeader]: SearchDetailsHeaderData;
   [TranslationComponentNameEnum.header]: HeaderData;
   [TranslationComponentNameEnum.searchHeader]: SearchHeaderData;
+  [TranslationComponentNameEnum.modal]: ModalData;
 }

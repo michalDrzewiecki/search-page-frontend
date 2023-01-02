@@ -25,7 +25,7 @@ export const FilterElement = ({filterConfig}: FilterElementPropsInterface) => {
   return <div className={'filterElement'}>
     <div className={'filterElementName'}>
       <h3>{title}</h3>
-      {details ? <Details details={details}/> : null}
+      {details ? <Details details={details} title={title}/> : null}
     </div>
     <CurrentComponent params={filterConfig}/>
   </div>

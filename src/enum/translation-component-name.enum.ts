@@ -4,5 +4,6 @@ export enum TranslationComponentNameEnum {
   searchHeader = 'searchHeader',
   filters = 'filters',
   searchDetailsHeader = 'searchDetailsHeader',
-  header = 'header'
+  header = 'header',
+  modal = 'modal'
 }
