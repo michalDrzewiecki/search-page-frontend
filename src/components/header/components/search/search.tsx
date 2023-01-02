@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
-import { TranslationComponentNameEnum } from '../../../../enum';
+import { useNavigate } from 'react-router';
+import { AppRoutesEnum, TranslationComponentNameEnum } from '../../../../enum';
 import { HeaderData } from '../../../../interfaces';
-import { changeSearch } from '../../../../store/redux/actions/filters';
+import { changeSearch, clearFiltersData } from '../../../../store/redux/actions/filters';
 import { useSelector } from '../../../../store/redux/useSelector';
 import { getTranslation } from '../../../../utils';
 import './search.scss';
@@ -11,6 +12,7 @@ import './search.scss';
 export const Search = () => {
   const language = useSelector(state => state.languageConfig.language);
   const translations = getTranslation(language, TranslationComponentNameEnum.header) as HeaderData;
+  const navigate = useNavigate();
 
   const [searchText, setSearchText] = useState<string>('');
 
@@ -29,6 +31,10 @@ export const Search = () => {
   }
 
   const handleSearch = (): void => {
+    if (window.location.pathname !== `/${AppRoutesEnum.search}`) {
+      dispatch(clearFiltersData());
+      navigate(`/${AppRoutesEnum.search}`);
+    }
     dispatch(changeSearch(searchText));
   }
 

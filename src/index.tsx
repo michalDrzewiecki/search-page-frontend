@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
+import { AppRoutesEnum } from './enum';
 import reportWebVitals from './reportWebVitals';
 import { ErrorNotFoundRoute } from './routes/error-not-found/error-not-found-route';
+import { ProductRoute } from './routes/product/product';
 import { RootRoute } from './routes/root/root-route';
 import { SearchRoute } from './routes/search/search-route';
 import { createStore } from './store/redux/configureStore';
@@ -20,8 +22,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorNotFoundRoute/>,
     children: [
       {
-        path: 'search',
+        path: AppRoutesEnum.search,
         element: <SearchRoute/>
+      },
+      {
+        path: `${AppRoutesEnum.product}/:id`,
+        element: <ProductRoute/>
       }
     ]
   },

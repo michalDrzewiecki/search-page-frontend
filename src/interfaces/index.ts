@@ -4,3 +4,4 @@ export * from './resource-response.interface';
 export * from './base-props.interface';
 export * from './category.interface';
 export * from './filter-config-response.interface';
+export * from './product-to-display.interface';

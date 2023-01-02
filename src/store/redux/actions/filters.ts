@@ -47,3 +47,7 @@ export const clearAllSelectedCategories = createAction(
   ReduxStoreActionNameEnum.selectedCategoriesClearAll
 );
 
+export const clearFiltersData = createAction(
+  ReduxStoreActionNameEnum.filtersDataClear
+);
+

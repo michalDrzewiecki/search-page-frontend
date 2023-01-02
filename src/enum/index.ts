@@ -6,3 +6,4 @@ export * from './sort-values.enum';
 export * from './filter-operator.enum';
 export * from './filtering-key-words.enum';
 export * from './filtering-separators.enum';
+export * from './app-routes.enum';

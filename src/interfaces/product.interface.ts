@@ -1,8 +1,8 @@
-import { PrizeInterface } from './prize-data.interface';
+import { PriceInterface } from './price-data.interface';
 
 export interface ProductInterface {
   id: string;
   imgUrl: string;
   name: string;
-  price: PrizeInterface;
+  price: PriceInterface;
 }
