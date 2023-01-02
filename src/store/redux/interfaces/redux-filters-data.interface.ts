@@ -16,7 +16,12 @@ export interface ReduxPaginationDataInterface {
   offset: number;
 }
 
-export interface ReduxFiltersDataInterface {
+export interface ReduxSelectedCategoriesDataInterface {
+  selectedCategory: string;
+  selectedSubcategory: string;
+}
+
+export interface ReduxFiltersDataInterface extends ReduxSelectedCategoriesDataInterface {
   filters: ReduxSingleFilterDataInterface[];
   sort: ReduxSortDataInterface;
   search: string;

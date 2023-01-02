@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { TranslationComponentNameEnum } from '../../../../enum';
 import { CategoryInterface, FiltersTranslationData } from '../../../../interfaces';
-import { changeSelectedCategories, clearAllSelectedCategories } from '../../../../store/redux/actions/categories';
+import { changeSelectedCategories, clearAllSelectedCategories } from '../../../../store/redux/actions/filters';
 import { useSelector } from '../../../../store/redux/useSelector';
 import { getTranslation } from '../../../../utils';
 import { CategoryTitle } from './components/category-title/category-title';
@@ -15,21 +15,22 @@ export const SideFiltersCategorySelector = () => {
   const language = useSelector(state => state.languageConfig.language);
   const productAmount = useSelector(state => state.productData.productAmount);
   const categoryData = useSelector(state => state.categoryData);
+  const filterData = useSelector(state => state.filtersData);
   const translations = getTranslation(language, TranslationComponentNameEnum.filters) as FiltersTranslationData;
   const dispatch = useDispatch();
 
   useEffect(() => {
     setCategories(categoryData.categories);
-  }, categoryData.categories)
+  }, [categoryData.categories])
 
   useEffect(() => {
-    if (selectedCategory !== categoryData.selectedCategory.name) {
-      setSelectedCategory(categoryData.selectedCategory.name);
+    if (selectedCategory !== filterData.selectedCategory) {
+      setSelectedCategory(filterData.selectedCategory);
     }
-    if (selectedSubcategory !== categoryData.selectedSubcategory.name) {
-      setSelectedSubcategory(categoryData.selectedSubcategory.name);
+    if (selectedSubcategory !== filterData.selectedSubcategory) {
+      setSelectedSubcategory(filterData.selectedSubcategory);
     }
-  }, [categoryData.selectedCategory.name, categoryData.selectedSubcategory.name])
+  }, [filterData.selectedCategory, filterData.selectedSubcategory])
 
   const isAllCategoriesActive = (): boolean => !selectedCategory && !selectedSubcategory;
   const isCategoryActive = (name: string): boolean => name === selectedCategory;
@@ -37,17 +38,12 @@ export const SideFiltersCategorySelector = () => {
 
   const handleCategoryClick = (displayName: string): void => {
     const foundCategory = categories.find(category => category.displayName === displayName);
-    setSelectedCategory(foundCategory?.name || '');
+    const categoryName =  foundCategory?.name || '';
+    setSelectedCategory(categoryName);
     setSelectedSubcategory('');
     dispatch(changeSelectedCategories({
-      selectedCategory: {
-        displayName: foundCategory?.displayName || '',
-        name: foundCategory?.name || ''
-      },
-      selectedSubcategory: {
-        displayName: '',
-        name: ''
-      }
+      selectedCategory: categoryName,
+      selectedSubcategory: ''
     }));
   }
 
@@ -60,16 +56,11 @@ export const SideFiltersCategorySelector = () => {
     }
     const foundSubcategory = foundCategory.subcategories.find(subcategory => subcategory.displayName === displayName);
     setSelectedCategory(foundCategory.name);
-    setSelectedSubcategory(foundSubcategory?.name || '')
+    const selectedSubcategoryName = foundSubcategory?.name || '';
+    setSelectedSubcategory(selectedSubcategoryName)
     dispatch(changeSelectedCategories({
-      selectedCategory: {
-        displayName: foundCategory.displayName,
-        name: foundCategory.name
-      },
-      selectedSubcategory: {
-        displayName: foundSubcategory?.displayName || '',
-        name: foundSubcategory?.name || ''
-      }
+      selectedCategory: foundCategory.name,
+      selectedSubcategory: selectedSubcategoryName
     }));
   }
 

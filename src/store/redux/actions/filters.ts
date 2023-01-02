@@ -2,6 +2,7 @@ import { createAction } from '@reduxjs/toolkit';
 import { ReduxStoreActionNameEnum } from '../../../enum';
 import {
   ReduxFiltersDataInterface,
+  ReduxSelectedCategoriesDataInterface,
   ReduxSingleFilterDataInterface,
   ReduxSortDataInterface
 } from '../interfaces/redux-filters-data.interface';
@@ -36,5 +37,13 @@ export const clearSort = createAction(
 
 export const changeOffset = createAction<number>(
   ReduxStoreActionNameEnum.offsetChange
+);
+
+export const changeSelectedCategories = createAction<ReduxSelectedCategoriesDataInterface>(
+  ReduxStoreActionNameEnum.selectedCategoriesChange
+);
+
+export const clearAllSelectedCategories = createAction(
+  ReduxStoreActionNameEnum.selectedCategoriesClearAll
 );
 

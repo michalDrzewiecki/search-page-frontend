@@ -105,11 +105,27 @@ const parseSearch = (search: string): Pick<ReduxFiltersDataInterface, 'search'> 
   return {search: search};
 }
 
+const parseCategory = (category: string): Pick<ReduxFiltersDataInterface, 'selectedCategory'> | {} => {
+  if (!category) {
+    return {};
+  }
+  return {selectedCategory: category};
+}
+
+const parseSubcategory = (subcategory: string): Pick<ReduxFiltersDataInterface, 'selectedSubcategory'> | {} => {
+  if (!subcategory) {
+    return {};
+  }
+  return {selectedSubcategory: subcategory};
+}
+
 const queryParamsParseMethods: Record<string, (data: string, availableFilters: ReduxAvailableFiltersInterface) => Record<string, any> >= {
   [FilteringKeyWordsEnum.search]: parseSearch,
   [FilteringKeyWordsEnum.filter]: parseFilter,
   [FilteringKeyWordsEnum.sort]: parseSort,
   [FilteringKeyWordsEnum.page]: parsePage,
+  [FilteringKeyWordsEnum.category]: parseCategory,
+  [FilteringKeyWordsEnum.subcategory]: parseSubcategory,
   [FilteringKeyWordsEnum.offset]: () => ({}),
   [FilteringKeyWordsEnum.limit]: () => ({}),
 

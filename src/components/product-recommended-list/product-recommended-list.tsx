@@ -9,21 +9,21 @@ import './product-recommended-list.scss';
 
 export const ProductRecommendedList = () => {
   const [recommendedProducts, setRecommendedProducts] = useState<ProductInterface[]>([]);
-  const categoryData = useSelector(state => state.categoryData);
+  const filtersData = useSelector(state => state.filtersData);
 
   useEffect(() => {
-    const {selectedCategory: {name}} = categoryData;
-    if (!name) {
+    const {selectedCategory} = filtersData;
+    if (!selectedCategory) {
       setRecommendedProducts([]);
       return;
     }
     const fetchRecommendedProducts = async () => {
       const fetchedProducts = await new ProductService()
-        .fetchRecommendedProducts(`${FilteringKeyWordsEnum.category}=${name}`);
+        .fetchRecommendedProducts(`${FilteringKeyWordsEnum.category}=${selectedCategory}`);
       setRecommendedProducts(fetchedProducts);
     };
     fetchRecommendedProducts();
-  }, [categoryData.selectedCategory.name]);
+  }, [filtersData.selectedCategory]);
 
   return <div>
     {

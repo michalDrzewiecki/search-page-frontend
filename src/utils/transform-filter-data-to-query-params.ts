@@ -1,17 +1,16 @@
-import { ReduxSelectedCategoriesInterface } from '../store/redux/interfaces';
+import { FilteringKeyWordsEnum, FilteringSeparatorsEnum } from '../enum';
 import {
-  ReduxFiltersDataInterface, ReduxPaginationDataInterface,
+  ReduxFiltersDataInterface,
+  ReduxPaginationDataInterface,
   ReduxSingleFilterDataInterface,
   ReduxSortDataInterface
 } from '../store/redux/interfaces/redux-filters-data.interface';
-import { FilteringKeyWordsEnum, FilteringSeparatorsEnum } from '../enum';
 
 export const transformFilterDataToQueryParams = (
-  filtersData: ReduxFiltersDataInterface,
-  categoryData: Pick<ReduxSelectedCategoriesInterface, 'selectedSubcategory' | 'selectedCategory'>
+  filtersData: ReduxFiltersDataInterface
 ): string => {
   const {filters, sort, search, pagination} = filtersData;
-  return `${parseSortData(sort)}${parseSearchData(search)}${parseFilterData(filters)}${parsePaginationData(pagination)}${parseCategoryData(categoryData)}`;
+  return `${parseSortData(sort)}${parseSearchData(search)}${parseFilterData(filters)}${parsePaginationData(pagination)}${parseCategoryData(filtersData.selectedCategory, filtersData.selectedSubcategory)}`;
 };
 
 const parseSortData = (sortData: ReduxSortDataInterface): string => {
@@ -42,8 +41,8 @@ const parsePaginationData = ({limit, offset}: ReduxPaginationDataInterface): str
   return `${FilteringKeyWordsEnum.limit}=${limit}&${FilteringKeyWordsEnum.offset}=${offset}&`
 };
 
-const parseCategoryData = ({selectedCategory, selectedSubcategory}: ReduxSelectedCategoriesInterface): string => {
-  const selectedCategoryParam = selectedCategory.name ? `category=${selectedCategory.name}&` : '';
-  const selectedSubcategoryParam = selectedSubcategory.name ? `subcategory=${selectedSubcategory.name}&` : '';
+const parseCategoryData = (selectedCategory: string, selectedSubcategory: string): string => {
+  const selectedCategoryParam = selectedCategory ? `category=${selectedCategory}&` : '';
+  const selectedSubcategoryParam = selectedSubcategory? `subcategory=${selectedSubcategory}&` : '';
   return `${selectedCategoryParam}${selectedSubcategoryParam}`;
 }

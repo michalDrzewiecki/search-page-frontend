@@ -5,13 +5,13 @@ import {
   changeAllFiltersData,
   changeFilters,
   changeOffset,
-  changeSearch,
+  changeSearch, changeSelectedCategories,
   changeSort,
-  clearAllFilters,
+  clearAllFilters, clearAllSelectedCategories,
   clearFilter, clearSort
 } from '../actions/filters';
 import {
-  ReduxFiltersDataInterface, ReduxPaginationDataInterface,
+  ReduxFiltersDataInterface, ReduxPaginationDataInterface, ReduxSelectedCategoriesDataInterface,
   ReduxSingleFilterDataInterface,
   ReduxSortDataInterface
 } from '../interfaces/redux-filters-data.interface';
@@ -30,7 +30,9 @@ const initialData: ReduxFiltersDataInterface = {
   filters: [],
   sort: defaultSortData,
   search: '',
-  pagination: defaultPaginationData
+  pagination: defaultPaginationData,
+  selectedCategory: '',
+  selectedSubcategory: ''
 };
 
 export const filtersReducer = createReducer(initialData, (builder) => {
@@ -114,5 +116,17 @@ export const filtersReducer = createReducer(initialData, (builder) => {
       ...state,
       sort: defaultSortData
     })
-  );
+  ).addCase(
+    changeSelectedCategories,
+    (state, action: PayloadAction<ReduxSelectedCategoriesDataInterface>) => ({
+      ...state,
+      ...action.payload,
+    }),
+  ).addCase(
+    clearAllSelectedCategories,
+    (state) => ({
+      ...state,
+      selectedCategory: '',
+      selectedSubcategory: ''
+    }));
 });

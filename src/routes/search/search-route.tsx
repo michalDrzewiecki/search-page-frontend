@@ -6,35 +6,40 @@ import { SearchHeader } from '../../components/search-header/search-header';
 import { SideFilters } from '../../components/side-filters/side-filters';
 import { CategoriesContainer } from '../../containers/categories-container/categories-container';
 import { FiltersContainer } from '../../containers/filters-container/filters-container';
+import {
+  PreFiltersUrlParamsContainer
+} from '../../containers/pre-filters-url-params-container/pre-filters-url-params-container';
 import { SearchUrlParamsContainer } from '../../containers/search-url-params-container/search-url-params.container';
 import './search-route.scss';
 
 export const SearchRoute = () => {
   return (
     <CategoriesContainer>
-      <FiltersContainer>
-        <SearchUrlParamsContainer>
-          <div className={'searchRoute'}>
-            <div/>
-            <div>
-              <SearchHeader/>
-              <div className={'searchContainer'}>
-                <div>
-                  <SideFilters/>
-                </div>
-                <div/>
-                <div className={'resultsContainer'}>
-                  <ProductRecommendedList/>
-                  <SearchDetailsHeader/>
-                  <ProductList/>
-                  <SearchDetailsFooter/>
+      <PreFiltersUrlParamsContainer>
+        <FiltersContainer>
+          <SearchUrlParamsContainer>
+            <div className={'searchRoute'}>
+              <div/>
+              <div>
+                <SearchHeader/>
+                <div className={'searchContainer'}>
+                  <div>
+                    <SideFilters/>
+                  </div>
+                  <div/>
+                  <div className={'resultsContainer'}>
+                    <ProductRecommendedList/>
+                    <SearchDetailsHeader/>
+                    <ProductList/>
+                    <SearchDetailsFooter/>
+                  </div>
                 </div>
               </div>
+              <div/>
             </div>
-            <div/>
-          </div>
-        </SearchUrlParamsContainer>
-      </FiltersContainer>
+          </SearchUrlParamsContainer>
+        </FiltersContainer>
+      </PreFiltersUrlParamsContainer>
     </CategoriesContainer>
   );
 };

@@ -10,14 +10,14 @@ import { FiltersContainerPropsInterface } from './filters-container-props.interf
 export const FiltersContainer = ({children}: FiltersContainerPropsInterface) => {
   const [areAvailableFiltersFetched, setAreAvailableFiltersFetched] = useState<boolean>(false);
   const language = useSelector(state => state.languageConfig.language);
-  const categoryData = useSelector(state => state.categoryData);
+  const filtersData = useSelector(state => state.filtersData);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchFilters = async () => {
-      const {selectedCategory, selectedSubcategory} = categoryData;
-      const categoryQueryParam = getQueryParam(FilteringKeyWordsEnum.category, selectedCategory.name);
-      const subcategoryQueryParam = getQueryParam(FilteringKeyWordsEnum.subcategory, selectedSubcategory.name);
+      const {selectedCategory, selectedSubcategory} = filtersData;
+      const categoryQueryParam = getQueryParam(FilteringKeyWordsEnum.category, selectedCategory);
+      const subcategoryQueryParam = getQueryParam(FilteringKeyWordsEnum.subcategory, selectedSubcategory);
       const fetchedFilters = await new FilterService()
         .fetchFilters(`${getQueryParam(FilteringKeyWordsEnum.market, language)}${categoryQueryParam}${subcategoryQueryParam}`);
       dispatch(changeAvailableFilters({
@@ -27,7 +27,7 @@ export const FiltersContainer = ({children}: FiltersContainerPropsInterface) => 
       setAreAvailableFiltersFetched(true);
     };
     fetchFilters();
-  }, [language, categoryData.selectedCategory.name, categoryData.selectedSubcategory.name]);
+  }, [language, filtersData.selectedCategory, filtersData.selectedSubcategory]);
 
   return <>{areAvailableFiltersFetched ? children : null}</>;
 };

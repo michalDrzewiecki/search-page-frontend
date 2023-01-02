@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { TranslationComponentNameEnum } from '../../enum';
 import { SearchHeaderData } from '../../interfaces';
 import { useSelector } from '../../store/redux/useSelector';
-import { getTranslation } from '../../utils';
+import { getCategoryResourceName, getTranslation } from '../../utils';
 import { ProductCounter } from './components/product-counter/product-counter';
 import { RouteList } from './components/route-list/route-list';
 import { RouteDataInterface } from './components/route-list/route-list-props.interface';
@@ -22,16 +22,19 @@ export const SearchHeader = () => {
   useEffect(() => {
     let routeTitle = translations.productsText;
     const newRoutes: RouteDataInterface[] = [];
-    if (categoryData.selectedCategory.displayName) {
-      routeTitle = categoryData.selectedCategory.displayName;
+    const {selectedCategory, selectedSubcategory} = filterData;
+    if (selectedCategory) {
+      const displayName = getCategoryResourceName(categoryData.categories, selectedCategory);
+      routeTitle = displayName
       newRoutes.push({
-        name: categoryData.selectedCategory.displayName
+        name: displayName
       });
     }
-    if (categoryData.selectedSubcategory.displayName) {
-      routeTitle = categoryData.selectedSubcategory.displayName;
+    if (selectedSubcategory) {
+      const displayName = getCategoryResourceName(categoryData.categories, selectedSubcategory);
+      routeTitle = displayName;
       newRoutes.push({
-        name: categoryData.selectedSubcategory.displayName
+        name: displayName
       })
     }
     if (filterData.search) {
@@ -42,7 +45,7 @@ export const SearchHeader = () => {
     }
     setRouteTitle(routeTitle);
     setRoutes(newRoutes);
-  }, [categoryData.selectedCategory.name, categoryData.selectedSubcategory.name, filterData.search]);
+  }, [filterData.selectedCategory, filterData.selectedSubcategory, filterData.search]);
 
   return <div className={'searchHeader'}>
     {routes.length ? <RouteList routes={routes}/> : null}
