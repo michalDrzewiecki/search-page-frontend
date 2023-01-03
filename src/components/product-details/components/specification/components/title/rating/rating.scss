@@ -1,0 +1,13 @@
+@import 'src/styles/variables';
+
+.ratingContainer {
+
+  .star {
+    color: $lighterGrey;
+  }
+
+  .selectedStar {
+    @extend .star;
+    color: #FFBF00;
+  }
+}

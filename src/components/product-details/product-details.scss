@@ -1,0 +1,10 @@
+.productDetailsContainer {
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  margin: 50px 0 0 0;
+
+  .productDataContainer {
+    display: grid;
+    grid-template-columns: 40% 3% 57%;
+  }
+}

@@ -3,6 +3,6 @@ import './image.scss';
 
 export const Image = ({imgUrl}: ImagePropsInterface) => {
   return <div>
-    <img src={imgUrl}/>
+    <img src={imgUrl} alt={'Product Image'}/>
   </div>
 }

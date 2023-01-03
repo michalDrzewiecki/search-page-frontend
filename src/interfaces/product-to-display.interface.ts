@@ -1,8 +1,13 @@
 import { PriceInterface } from './price-data.interface';
 
-interface ProductFieldDataInterface {
+export interface ProductFieldDataInterface {
   displayName: string;
   value: string;
+}
+
+export interface RatingInterface {
+  maxRating: number;
+  rating: number;
 }
 
 export interface ProductToDisplayInterface {
@@ -18,5 +23,6 @@ export interface ProductToDisplayInterface {
   soldAmount: number;
   category: string;
   subcategory: string;
+  ratingData: RatingInterface;
   additionalFields: Record<string, ProductFieldDataInterface | ProductFieldDataInterface[]>
 }
