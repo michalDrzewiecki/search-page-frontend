@@ -24,5 +24,5 @@ export interface ProductToDisplayInterface {
   category: string;
   subcategory: string;
   ratingData: RatingInterface;
-  additionalFields: Record<string, ProductFieldDataInterface | ProductFieldDataInterface[]>
+  additionalFields: Record<string, ProductFieldDataInterface>
 }

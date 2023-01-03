@@ -1,0 +1,16 @@
+@import 'src/styles/variables';
+
+.detailContainer {
+  margin: 10px 0 10px 0;
+
+  .displayNameText {
+    font-size: 13px;
+    color: $darkGrey;
+  }
+
+  .valueText {
+    font-size: 15px;
+    font-weight: bold;
+    color: $darkGrey;
+  }
+}
