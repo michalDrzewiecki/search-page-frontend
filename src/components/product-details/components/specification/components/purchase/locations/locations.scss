@@ -1,0 +1,39 @@
+@import 'src/styles/variables';
+
+.locationsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0 10px 0;
+
+  .iconContainer {
+    margin: 0 20px 0 20px;
+    font-size: 30px;
+    display: flex;
+    align-content: center;
+  }
+
+  .textContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+
+    .specificLocations {
+      display: flex;
+      flex-direction: row;
+
+      .locationContainer {
+        font-size: 12px;
+        padding: 5px 0 5px 0;
+
+        .dotIconContainer {
+          padding: 0 3px 0 3px;
+        }
+
+        .locationName {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

@@ -27,6 +27,13 @@ const translation: TranslationInterface = {
   },
   [TranslationComponentNameEnum.modal]: {
     closeModalText: 'Zamknij okno'
+  },
+  [TranslationComponentNameEnum.productDetails]: {
+    saveText: 'Oszczędź',
+    addToCartText: 'Dodaj do koszyka',
+    availableText: 'Dostępny',
+    unavailableText: 'Niedostępny',
+    availableInText: 'Dostępny w:'
   }
 };
 

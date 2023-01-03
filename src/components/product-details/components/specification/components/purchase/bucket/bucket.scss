@@ -1,0 +1,71 @@
+@import 'src/styles/variables';
+
+$resourcePadding: 8px 8px 8px 8px;
+$cartButtonBGColor: #00b33c;
+$cartButtonBGColorHover: #006622;
+$cartButtonBGColorUnavailable: $lightGrey;
+
+.bucketContainer {
+  margin: 20px 0 15px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  .productAmountContainer {
+    border: 1px solid $midGrey;
+    border-radius: 20px;
+    padding: $resourcePadding;
+    width: 15%;
+    height: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .productAmountInput {
+      text-align: center;
+      border: 0;
+      width: 80%;
+      height: 100%;
+      outline: none;
+    }
+
+    .unavailableProductAmountInput {
+      @extend .productAmountInput;
+      color: $midGrey;
+      pointer-events: none;
+    }
+  }
+
+  .bucketBox {
+    margin: 0 0 0 10px;
+    width: 65%;
+    border: 1px solid $cartButtonBGColor;
+    border-radius: 20px;
+    background-color: $cartButtonBGColor;
+    padding: $resourcePadding;
+    color: white;
+    display: flex;
+    justify-content: center;
+
+    .cartIcon {
+      margin: 0 8px 0 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: $cartButtonBGColorHover;
+    }
+  }
+
+  .bucketBoxUnavailable {
+    @extend .bucketBox;
+    border: 1px solid $cartButtonBGColorUnavailable;
+    background-color: $cartButtonBGColorUnavailable;
+
+    &:hover {
+      cursor: auto;
+      background-color: $cartButtonBGColorUnavailable;
+    }
+  }
+}

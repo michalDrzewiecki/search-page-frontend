@@ -1,0 +1,33 @@
+@import 'src/styles/variables';
+
+.availabilityContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0 10px 0;
+
+  .iconContainer {
+    margin: 0 20px 0 20px;
+    font-size: 30px;
+    display: flex;
+    align-content: center;
+  }
+
+  .iconContainerUnavailable {
+    @extend .iconContainer;
+    color: $lightGrey;
+  }
+
+  .textContainer {
+    font-size: 14px;
+
+    .textAvailable {
+      color: #00b33c;
+    }
+
+    .textUnavailable {
+      @extend .textAvailable;
+      color: $lightGrey;
+    }
+  }
+}

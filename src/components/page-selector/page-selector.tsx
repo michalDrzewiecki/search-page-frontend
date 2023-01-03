@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import { useDispatch } from 'react-redux';
-import { DEFAULT_PRODUCT_AMOUNT } from '../../constants';
+import { DEFAULT_PRODUCT_AMOUNT, numericRegex } from '../../constants';
 import { LanguageEnum, TranslationComponentNameEnum } from '../../enum';
 import useKeyPressedHook from '../../hooks/use-key-pressed.hook';
 import { SearchDetailsHeaderData } from '../../interfaces';
@@ -41,7 +41,6 @@ export const PageSelector = () => {
 
   const handleCurrentPageInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
-    const numericRegex = /^[0-9\b]+$/;
     if (
       value &&
       (

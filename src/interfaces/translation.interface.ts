@@ -33,6 +33,14 @@ export interface ModalData {
   closeModalText: string;
 }
 
+export interface ProductDetailsData {
+  saveText: string;
+  addToCartText: string;
+  availableText: string;
+  unavailableText: string;
+  availableInText: string;
+}
+
 export interface TranslationInterface {
   [TranslationComponentNameEnum.productRecommendedList]: ProductRecommendedListTranslationData;
   [TranslationComponentNameEnum.productAmount]: ProductAmountTranslationData;
@@ -41,4 +49,5 @@ export interface TranslationInterface {
   [TranslationComponentNameEnum.header]: HeaderData;
   [TranslationComponentNameEnum.searchHeader]: SearchHeaderData;
   [TranslationComponentNameEnum.modal]: ModalData;
+  [TranslationComponentNameEnum.productDetails]: ProductDetailsData;
 }

@@ -1,0 +1,36 @@
+@import 'src/styles/variables';
+
+$smallerPriceFontSize: 13px;
+
+.productPriceContainer {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+
+
+  .safeDataContainer {
+    .differenceInPrice {
+      font-size: $smallerPriceFontSize;
+    }
+  }
+
+  .priceDataContainer {
+    padding: 0 0 0 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .currentPrice {
+      margin: 0 0 0 10px;
+      font-size: 27px;
+    }
+
+    .previousPrice {
+      color: $midGrey;
+      text-decoration: line-through;
+      font-size: $smallerPriceFontSize;
+    }
+
+  }
+}

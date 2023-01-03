@@ -1,4 +1,21 @@
+@import 'src/styles/variables';
+@import 'src/styles/classes';
+
+$leftPadding: 10px;
+$rightPadding: 20px;
+
 .purchaseContainer {
-  background-color: #dfdfdf;
   flex: 1;
+
+  .purchaseBox {
+    margin: 0 10px 0 10px;
+    padding: 10px $rightPadding 0 $leftPadding;
+    border-radius: 20px;
+    border: 1px solid $lightGrey;
+
+    .lineContainer {
+      @extend .searchDetailsLineContainer;
+      margin: 0 (-$rightPadding) 0 (-$leftPadding);
+    }
+  }
 }

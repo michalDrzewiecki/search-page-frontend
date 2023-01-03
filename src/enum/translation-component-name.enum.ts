@@ -5,5 +5,6 @@ export enum TranslationComponentNameEnum {
   filters = 'filters',
   searchDetailsHeader = 'searchDetailsHeader',
   header = 'header',
-  modal = 'modal'
+  modal = 'modal',
+  productDetails = 'productDetails'
 }
