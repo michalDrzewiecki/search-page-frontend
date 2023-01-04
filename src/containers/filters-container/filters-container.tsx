@@ -18,11 +18,11 @@ export const FiltersContainer = ({children}: FiltersContainerPropsInterface) => 
       const {selectedCategory, selectedSubcategory} = filtersData;
       const categoryQueryParam = getQueryParam(FilteringKeyWordsEnum.category, selectedCategory);
       const subcategoryQueryParam = getQueryParam(FilteringKeyWordsEnum.subcategory, selectedSubcategory);
-      const fetchedFilters = await new FilterService()
+      const {filters, sort} = await new FilterService()
         .fetchFilters(`${getQueryParam(FilteringKeyWordsEnum.market, language)}${categoryQueryParam}${subcategoryQueryParam}`);
       dispatch(changeAvailableFilters({
-        availableFilters: fetchedFilters.filters,
-        availableSortOptions: fetchedFilters.sort
+        availableFilters: filters,
+        availableSortOptions: sort
       }))
       setAreAvailableFiltersFetched(true);
     };

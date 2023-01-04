@@ -140,5 +140,5 @@ export const transformQueryParamsToFilterData = (filtersData: Record<string, str
     }
     parsedFiltersData = {...parsedFiltersData, ...parser(filtersData[key], availableFilters)}
   }
-  return parsedFiltersData as ReduxFiltersDataInterface;
+  return {pagination: {limit: DEFAULT_PRODUCT_AMOUNT, offset: 0}, ...parsedFiltersData} as ReduxFiltersDataInterface;
 }

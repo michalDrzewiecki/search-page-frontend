@@ -11,7 +11,7 @@ import './product-list.scss';
 
 export const ProductList = () => {
   const [products, setProducts] = useState<ProductInterface[]>([]);
-  const filtersDataRef = useRef<ReduxFiltersDataInterface | null>(null);
+  const filtersDataRef = useRef<Omit<ReduxFiltersDataInterface, 'selectedSubcategory' | 'selectedCategory'> | null>(null);
   const dispatch = useDispatch();
 
   const filterData = useSelector(state => state.filtersData);
@@ -28,7 +28,12 @@ export const ProductList = () => {
       dispatch(changeProductAmount(response.count));
     }
     fetchProducts();
-  }, [filterData]);
+  }, [
+    filterData.search,
+    filterData.sort,
+    filterData.filters,
+    filterData.pagination
+  ]);
 
   return <div className={'productList'}>
     {products.map(product => <Product key={product.id} product={product}/>)}

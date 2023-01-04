@@ -21,9 +21,7 @@ export const SearchUrlParamsContainer = ({children}: SearchUrlParamsContainerPro
     const searchParamsObject: Record<string, string> = {};
     Array.from(searchParams.keys()).forEach(key => searchParamsObject[key] = searchParams.get(key) as string);
     const filters = transformQueryParamsToFilterData(searchParamsObject, availableFilters);
-    if (JSON.stringify(filters) !== JSON.stringify(filtersData)) {
-      dispatch(changeAllFiltersData(filters));
-    }
+    dispatch(changeAllFiltersData(filters));
     setAreQueryParamsParsed(true);
   }, [availableFilters]);
 

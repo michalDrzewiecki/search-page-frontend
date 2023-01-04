@@ -4,5 +4,5 @@ import { ReduxAvailableFiltersInterface } from '../interfaces';
 
 export const changeAvailableFilters = createAction<ReduxAvailableFiltersInterface>(
   ReduxStoreActionNameEnum.availableFiltersChange
-)
+);
 

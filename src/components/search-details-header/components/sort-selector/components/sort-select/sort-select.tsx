@@ -70,6 +70,7 @@ export const SortSelect = ({options, onValueChange}: SortSelectPropsInterface) =
         isSelectOpen &&
           options.map(option =>
             <div
+              key={option.name}
               className={selectedSortValue === option.name ? 'sortSelectOptionSelected' : 'sortSelectOption'}
               onClick={() => onSortOptionClick(option.name)}
             >
